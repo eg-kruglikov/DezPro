@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://dezpro.online/sitemap.xml
+Host: dezpro.online
