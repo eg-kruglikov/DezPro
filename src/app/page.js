@@ -1,95 +1,54 @@
+
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+export const metadata = {
+  title: "DezPro — профессиональная дезинфекция и дезинсекция",
+  description: "Услуги по дезинфекции, дезинсекции, дератизации. Быстро, безопасно, с гарантией. Telegram и WhatsApp для заявок.",
+};
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+export default function HomePage() {
+  return (
+    <main>
+      {/* Hero */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1>DezPro — за чистоту и безопасность</h1>
+          <p>Профессиональная дезинфекция и дезинсекция. Быстро, безопасно, с гарантией.</p>
+          <div className={styles.buttons}>
+            <a href="https://t.me/your_username" target="_blank" className={styles.btnPrimary}>
+              Написать в Telegram
+            </a>
+            <a href="https://wa.me/79998887766" target="_blank" className={styles.btnSecondary}>
+              Написать в WhatsApp
+            </a>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Услуги */}
+      <section className={styles.services}>
+        <h2>Наши услуги</h2>
+        <div className={styles.grid}>
+          {[
+            { title: "Дезинсекция", desc: "Избавление от насекомых: тараканы, клопы, муравьи." },
+            { title: "Дезинфекция", desc: "Обработка от бактерий, вирусов, плесени." },
+            { title: "Дератизация", desc: "Уничтожение крыс и мышей." },
+            { title: "Для организаций", desc: "Обработка офисов, кафе, гостиниц." },
+            { title: "Уничтожение запахов", desc: "После пожара, затоплений, квартир." },
+            { title: "Прочие услуги", desc: "Обработка автомобилей, участков, акарицидная обработка." },
+          ].map((service, i) => (
+            <div key={i} className={styles.card}>
+              <h3>{service.title}</h3>
+              <p>{service.desc}</p>ф
+              <Link href="/contacts" className={styles.btnSmall}>
+                Подробнее
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
