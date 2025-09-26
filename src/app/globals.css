@@ -1,19 +1,17 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #ffffff; /* всегда белый фон */
+  --foreground: #000000; /* всегда чёрный текст */
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+/* Фикс «дёргания» из-за появления/исчезновения вертикального скроллбара */
+html {
+  scrollbar-gutter: stable both-edges; /* поддерживается в современных браузерах */
 }
 
 body {
@@ -35,8 +33,7 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Принудительно светлая цветовая схема */
+html {
+  color-scheme: light;
 }

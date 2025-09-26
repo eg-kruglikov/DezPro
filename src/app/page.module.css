@@ -67,10 +67,7 @@
   height: 48px;
   padding: 0 20px;
   border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -168,7 +165,7 @@ a.secondary {
 
 .hero {
   position: relative;
-  background: url('/hero.png') 30% center/cover no-repeat;
+  /* image is set inline via style to support basePath in dev/prod */
   padding: 100px 20px;
   text-align: center;
   min-height: 80vh;
@@ -182,7 +179,7 @@ a.secondary {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5); /* затемняем только фон */
+  background: rgba(0, 0, 0, 0.2); /* затемняем только фон */
   z-index: 0; /* фон снизу */
 }
 
@@ -209,23 +206,43 @@ a.secondary {
   flex-wrap: wrap;
 }
 
+.buttons a {
+  min-width: 240px; /* одинаковая ширина */
+  justify-content: center;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.buttons a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
 .btnPrimary {
-  background: #f2cb05;
-  color: #000;
+  background: #229ed9; /* фирменный цвет Telegram */
+  color: #fff;
   padding: 12px 24px;
   text-decoration: none;
   border-radius: 6px;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btnSecondary {
-  border: 2px solid #f2cb05;
-  color: #f2cb05;
+  background: #25d366; /* фирменный цвет WhatsApp */
+  color: #fff;
   padding: 12px 24px;
   text-decoration: none;
   border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
+.buttons img {
+  display: block;
+}
 
 .services {
   padding: 60px 20px;
@@ -246,15 +263,37 @@ a.secondary {
 }
 
 .card {
+  position: relative;
   border: 1px solid #ddd;
-  padding: 20px;
   border-radius: 8px;
+  overflow: hidden; /* чтобы картинка повторяла скругления */
   background: #fafafa;
   transition: transform 0.2s ease;
+  display: flex;
+  min-height: 160px; /* чтобы высота карточки была нормальная */
 }
 
 .card:hover {
   transform: translateY(-5px);
+}
+
+/* Левая половина с текстом */
+.cardText {
+  flex: 1;
+  padding: 20px;
+  z-index: 1; /* текст поверх картинки */
+  background: rgba(255, 255, 255, 0.9); /* фон под текст (если надо) */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Правая половина с фоном */
+.cardImage {
+  flex: 1;
+  background-image: url("/cockroach.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .btnSmall {
@@ -267,3 +306,8 @@ a.secondary {
   border-radius: 6px;
 }
 
+/* Container to limit content width on the main page */
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
