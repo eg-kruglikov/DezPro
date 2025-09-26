@@ -59,34 +59,55 @@ export default function HomePage() {
               {
                 title: "Дезинсекция",
                 desc: "Избавление от насекомых: тараканы, клопы, муравьи.",
+                img: "/services/cockroach.png",
+                slug: "dezinkseciya",
               },
               {
                 title: "Дезинфекция",
                 desc: "Обработка от бактерий, вирусов, плесени.",
+                img: "/services/disinfection.png",
+                slug: "dezinfekciya",
               },
-              { title: "Дератизация", desc: "Уничтожение крыс и мышей." },
+              {
+                title: "Дератизация",
+                desc: "Уничтожение крыс и мышей.",
+                img: "/services/rat.png",
+                slug: "deratizaciya",
+              },
               {
                 title: "Для организаций",
                 desc: "Обработка офисов, кафе, гостиниц.",
+                img: "/services/office.png",
+                slug: "dlya-organizacij",
               },
               {
                 title: "Уничтожение запахов",
                 desc: "После пожара, затоплений, квартир.",
+                img: "/services/smell.png",
+                slug: "unichtozhenie-zapahov",
               },
               {
                 title: "Прочие услуги",
                 desc: "Обработка автомобилей, участков, акарицидная обработка.",
+                img: "/services/car.png",
+                slug: "prochie-uslugi",
               },
             ].map((service, i) => (
               <div key={i} className={styles.card}>
                 <div className={styles.cardText}>
                   <h3>{service.title}</h3>
                   <p>{service.desc}</p>
-                  <Link href="/contacts" className={styles.btnSmall}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className={styles.btnSmall}
+                  >
                     Подробнее
                   </Link>
                 </div>
-                <div className={styles.cardImage}></div>
+                <div
+                  className={styles.cardImage}
+                  style={{ backgroundImage: `url(${service.img})` }}
+                ></div>
               </div>
             ))}
           </div>

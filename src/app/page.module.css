@@ -207,7 +207,7 @@ a.secondary {
 }
 
 .buttons a {
-  min-width: 240px; /* одинаковая ширина */
+  width: 250px; /* одинаковая ширина */
   justify-content: center;
   font-weight: 600;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -281,19 +281,23 @@ a.secondary {
 .cardText {
   flex: 1;
   padding: 20px;
-  z-index: 1; /* текст поверх картинки */
-  background: rgba(255, 255, 255, 0.9); /* фон под текст (если надо) */
+  z-index: 1;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center; /* выравниваем элементы по центру по горизонтали */
+  justify-content: center; /* выравниваем по вертикали */
+  text-align: center; /* выравниваем сам текст */
+  order: 2;
 }
 
 /* Правая половина с фоном */
 .cardImage {
   flex: 1;
-  background-image: url("/cockroach.png");
   background-size: cover;
   background-position: center;
+  border-radius: 0 8px 8px 0; /* повторяем скругления справа */
+  order: 1;
 }
 
 .btnSmall {
