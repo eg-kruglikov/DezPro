@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
+import { servicesList } from "./data/services.js";
 
 export const metadata = {
   title: "DezPro — профессиональная дезинфекция и дезинсекция",
@@ -22,31 +23,14 @@ export default function HomePage() {
         }}
       >
         <div className={styles.heroContent}>
-          <h1>DezPro — за чистоту и безопасность</h1>
+          <h1>
+            <span className={styles.brand}>DezPro</span> — за чистоту и
+            безопасность
+          </h1>
           <p>
             Профессиональная дезинфекция и дезинсекция. Быстро, безопасно, с
             гарантией.
           </p>
-          <div className={styles.buttons}>
-            <a
-              href="https://t.me/your_username"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.btnPrimary}
-            >
-              <img src="/telegram.svg" alt="Telegram" width="20" height="20" />
-              <span>Написать в Telegram</span>
-            </a>
-            <a
-              href="https://wa.me/79998887766"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.btnSecondary}
-            >
-              <img src="/whatsapp.svg" alt="WhatsApp" width="20" height="20" />
-              <span>Написать в WhatsApp</span>
-            </a>
-          </div>
         </div>
       </section>
 
@@ -55,44 +39,7 @@ export default function HomePage() {
         <div className={styles.container}>
           <h2>Наши услуги</h2>
           <div className={styles.grid}>
-            {[
-              {
-                title: "Дезинсекция",
-                desc: "Избавление от насекомых: тараканы, клопы, муравьи.",
-                img: "/services/cockroach.png",
-                slug: "dezinkseciya",
-              },
-              {
-                title: "Дезинфекция",
-                desc: "Обработка от бактерий, вирусов, плесени.",
-                img: "/services/disinfection.png",
-                slug: "dezinfekciya",
-              },
-              {
-                title: "Дератизация",
-                desc: "Уничтожение крыс и мышей.",
-                img: "/services/rat.png",
-                slug: "deratizaciya",
-              },
-              {
-                title: "Для организаций",
-                desc: "Обработка офисов, кафе, гостиниц.",
-                img: "/services/office.png",
-                slug: "dlya-organizacij",
-              },
-              {
-                title: "Уничтожение запахов",
-                desc: "После пожара, затоплений, квартир.",
-                img: "/services/smell.png",
-                slug: "unichtozhenie-zapahov",
-              },
-              {
-                title: "Прочие услуги",
-                desc: "Обработка автомобилей, участков, акарицидная обработка.",
-                img: "/services/car.png",
-                slug: "prochie-uslugi",
-              },
-            ].map((service, i) => (
+            {servicesList.map((service, i) => (
               <div key={i} className={styles.card}>
                 <div className={styles.cardText}>
                   <h3>{service.title}</h3>

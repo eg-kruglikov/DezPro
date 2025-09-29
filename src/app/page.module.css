@@ -168,7 +168,9 @@ a.secondary {
   /* image is set inline via style to support basePath in dev/prod */
   padding: 100px 20px;
   text-align: center;
-  min-height: 80vh;
+  height: 100vw;
+  min-height: 70vh;
+  max-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,6 +190,12 @@ a.secondary {
   z-index: 1; /* выше чем затемнение */
   max-width: 800px;
 }
+.brand {
+  font-family: "Anton", sans-serif;
+  color: #ffee00;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.255);
+}
 
 .hero h1 {
   font-size: 2.5rem;
@@ -197,6 +205,19 @@ a.secondary {
 .hero p {
   font-size: 1.2rem;
   margin-bottom: 30px;
+}
+
+/* Увеличенные размеры текста для десктопа */
+@media (min-width: 1024px) {
+  .hero h1 {
+    font-size: 4rem;
+    margin-bottom: 30px;
+  }
+
+  .hero p {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
 }
 
 .buttons {
@@ -258,8 +279,22 @@ a.secondary {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+}
+
+/* На экранах больше 1100px - 3 колонки */
+@media (min-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* На мобильных устройствах - 1 колонка */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
