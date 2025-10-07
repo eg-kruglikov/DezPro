@@ -1,5 +1,6 @@
 // src/app/services/[slug]/page.js
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import services from "@/app/data/services";
 import BackButton from "@/app/components/BackButton";
 import styles from "./page.module.css";
@@ -22,14 +23,32 @@ export default async function ServicePage({ params }) {
       <div className={styles.container}>
         {/* Hero блок */}
         <section className={styles.hero}>
-          <div
-            className={styles.heroContent}
-            style={{
-              backgroundImage: `url(${service.heroImg})`,
-            }}
-          >
+          <div className={styles.heroContent}>
             <h1>{service.heroTitle}</h1>
             <p>{service.desc}</p>
+            <img
+              src={service.heroImg}
+              alt={service.heroTitle}
+              className={styles.heroImage}
+            />
+          </div>
+        </section>
+
+        {/* Сколько это стоит */}
+        <section className={styles.pricing}>
+          <h2>Сколько это стоит?</h2>
+          <div className={styles.priceCards}>
+            {service.pricing.map((item, index) => (
+              <div key={index} className={styles.priceCard}>
+                <h3>{item.title}</h3>
+                <div className={styles.price}>{item.price}</div>
+              </div>
+            ))}
+          </div>
+          <div className={styles.ctaWrap}>
+            <a href="/contacts" className={styles.primaryCta}>
+              Вызвать специалиста
+            </a>
           </div>
         </section>
 
@@ -49,19 +68,6 @@ export default async function ServicePage({ params }) {
           </div>
         </section>
 
-        {/* Сколько это стоит */}
-        <section className={styles.pricing}>
-          <h2>Сколько это стоит?</h2>
-          <div className={styles.priceCards}>
-            {service.pricing.map((item, index) => (
-              <div key={index} className={styles.priceCard}>
-                <h3>{item.title}</h3>
-                <div className={styles.price}>{item.price}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Как мы работаем */}
         <section className={styles.workProcess}>
           <h2>Как мы работаем?</h2>
@@ -72,7 +78,32 @@ export default async function ServicePage({ params }) {
             <div className={styles.gallery}>
               {service.workProcess.gallery.map((item, index) => (
                 <div key={index} className={styles.galleryItem}>
-                  <div className={styles.galleryPlaceholder}>{item}</div>
+                  {item.type === "video" ? (
+                    <video
+                      src={item.src}
+                      controls
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className={styles.galleryVideo}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    >
+                      Ваш браузер не поддерживает видео.
+                    </video>
+                  ) : (
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={400}
+                      height={300}
+                      className={styles.galleryImage}
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -91,7 +122,27 @@ export default async function ServicePage({ params }) {
         </section>
 
         {/* Кнопка назад */}
-        <BackButton />
+        <div className={styles.backButtonContainer}>
+          <BackButton />
+        </div>
+
+        {/* SEO заголовки */}
+        {service.seoHeadings && service.seoHeadings.length > 0 && (
+          <section className={styles.seoHeadings}>
+            {service.seoHeadings.map((group, index) => (
+              <div key={index} className={styles.seoGroup}>
+                <h3 className={styles.seoMainTitle}>{group.mainTitle}</h3>
+                <ul className={styles.seoList}>
+                  {group.subTitles.map((subTitle, subIndex) => (
+                    <li key={subIndex} className={styles.seoItem}>
+                      {subTitle}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+        )}
       </div>
     </main>
   );

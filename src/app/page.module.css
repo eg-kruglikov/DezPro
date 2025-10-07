@@ -185,6 +185,22 @@ a.secondary {
   z-index: 0; /* фон снизу */
 }
 
+/* Само изображение */
+.bg {
+  z-index: 0;
+  object-fit: cover;
+  object-position: 15% center;
+}
+
+/* Затемнение поверх картинки */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3); /* степень затемнения меняй тут */
+  z-index: 1;
+  pointer-events: none;
+}
+
 .heroContent {
   position: relative; /* поднимаем текст поверх */
   z-index: 1; /* выше чем затемнение */
@@ -349,4 +365,56 @@ a.secondary {
 .container {
   max-width: 1300px;
   margin: 0 auto;
+}
+
+.licenses {
+  padding: 60px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.licenses h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.licenseBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.licenseImage {
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btnPrimary {
+  display: inline-block;
+  background: #f2cb05;
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.btnPrimary:hover {
+  background: #e0b800;
 }

@@ -1,8 +1,20 @@
-/** @type {import('next').NextConfig} */
+// next.config.mjs
+import createNextPWA from "next-pwa";
 
-const nextConfig = {
+const withPWA = createNextPWA({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development",
+});
+
+const config = {
   output: "export",
-  images: { unoptimized: true },
+  images: {
+    unoptimized: true,
+    formats: ["image/webp"],
+    minimumCacheTTL: 31536000,
+  },
   basePath: "",
   assetPrefix: "",
   trailingSlash: true,
@@ -11,4 +23,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPWA(config);

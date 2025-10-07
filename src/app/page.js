@@ -13,15 +13,22 @@ export default function HomePage() {
   return (
     <main>
       {/* Hero */}
-      <section
-        className={styles.hero}
-        style={{
-          backgroundImage: `url(/hero.png)`,
-          backgroundPosition: "15% center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
+      <section className={styles.hero}>
+        <Image
+          src="/hero.webp"
+          alt="Профессиональная дезинфекция DezPro"
+          fill
+          priority
+          quality={80}
+          sizes="100vw"
+          fetchPriority="high"
+          style={{
+            objectFit: "cover",
+            objectPosition: "15% center",
+          }}
+          className={styles.bg}
+        />
+        <div className={styles.overlay} />
         <div className={styles.heroContent}>
           <h1>
             <span className={styles.brand}>DezPro</span> — за чистоту и
@@ -35,9 +42,10 @@ export default function HomePage() {
       </section>
 
       {/* Услуги */}
-      <section className={styles.services}>
+      <section id="services" className={styles.services}>
         <div className={styles.container}>
-          <h2>Наши услуги</h2>
+          <h2>Услуги и советы по самостоятельной обработке</h2>
+
           <div className={styles.grid}>
             {servicesList.map((service, i) => (
               <div key={i} className={styles.card}>
@@ -57,6 +65,36 @@ export default function HomePage() {
                 ></div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Лицензии */}
+      <section id="licenses" className={styles.licenses}>
+        <div className={styles.container}>
+          <h2>Лицензии и документы</h2>
+          <p className={styles.subtitle}>
+            Мы работаем легально и имеем все необходимые разрешения.
+            Ознакомьтесь с нашей лицензией Роспотребнадзора.
+          </p>
+          <div className={styles.licenseBlock}>
+            <Image
+              src="/license-preview.webp"
+              alt="Лицензия Роспотребнадзора"
+              className={styles.licenseImage}
+              width={300}
+              height={400}
+            />
+            <div className={styles.buttons}>
+              <a
+                href="/docs/license.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.btnPrimary}
+              >
+                📄 Скачать лицензию (PDF)
+              </a>
+            </div>
           </div>
         </div>
       </section>

@@ -3,37 +3,37 @@ export const servicesList = [
   {
     title: "Дезинсекция",
     desc: "Избавление от насекомых: тараканы, клопы, муравьи.",
-    img: "/services/cockroach.png",
+    img: "/services/cockroach.webp",
     slug: "dezinkseciya",
   },
   {
     title: "Дезинфекция",
     desc: "Обработка от бактерий, вирусов, плесени.",
-    img: "/services/disinfection.png",
+    img: "/services/disinfection.webp",
     slug: "dezinfekciya",
   },
   {
     title: "Дератизация",
     desc: "Уничтожение крыс и мышей.",
-    img: "/services/rat.png",
+    img: "/services/rat.webp",
     slug: "deratizaciya",
   },
   {
     title: "Для организаций",
     desc: "Обработка офисов, кафе, гостиниц.",
-    img: "/services/office.png",
+    img: "/services/office.webp",
     slug: "dlya-organizacij",
   },
   {
     title: "Уничтожение запахов",
     desc: "После пожара, затоплений, квартир.",
-    img: "/services/smell.png",
+    img: "/services/smell.webp",
     slug: "unichtozhenie-zapahov",
   },
   {
     title: "Прочие услуги",
     desc: "Обработка автомобилей, участков, акарицидная обработка.",
-    img: "/services/car.png",
+    img: "/services/car.webp",
     slug: "prochie-uslugi",
   },
 ];
@@ -43,7 +43,7 @@ const services = [
   {
     slug: "dezinkseciya",
     heroTitle: "Дезинсекция",
-    heroImg: "/services/hero/bugs-hero.png",
+    heroImg: "/services/hero/bugs-hero.webp",
     desc: "Избавление от насекомых: тараканы, клопы, муравьи.",
     meta: {
       title: "Дезинсекция в Москве и области | DezPro",
@@ -87,18 +87,126 @@ const services = [
     workProcess: {
       description:
         "Мы закрываем мебель, обрабатываем все поверхности безопасной химией, используем современное оборудование и даем гарантию на результат. Все препараты сертифицированы и безопасны для людей и животных.",
-      gallery: ["Фото процесса обработки", "Результат работы", "Оборудование"],
+      gallery: [
+        {
+          src: "/images/work-process/dezinkseciya/01-process.webp",
+          alt: "Процесс дезинсекции от тараканов и клопов",
+        },
+        {
+          src: "/images/work-process/dezinkseciya/02-result.webp",
+          alt: "Результат обработки от насекомых",
+        },
+        {
+          src: "/images/work-process/dezinkseciya/03-equipment.webp",
+          alt: "Оборудование для дезинсекции",
+        },
+        {
+          src: "/images/work-process/dezinkseciya/01.MP4",
+          alt: "Видео процесса дезинсекции",
+          type: "video",
+        },
+      ],
     },
     diy: {
       description:
         "Мы подготовили подробную статью о том, как провести обработку самостоятельно. Узнайте о методах, препаратах и мерах безопасности.",
       articleLink: "/diy/dezinkseciya",
     },
+    seoHeadings: [
+      {
+        mainTitle: "Уничтожение тараканов",
+        subTitles: [
+          "Травля тараканов",
+          "Обработка от тараканов",
+          "Как избавиться от тараканов",
+        ],
+      },
+      {
+        mainTitle: "Уничтожение клопов",
+        subTitles: [
+          "Травля клопов",
+          "Обработка от клопов",
+          "Как избавиться от клопов",
+        ],
+      },
+      {
+        mainTitle: "Уничтожение муравьёв",
+        subTitles: [
+          "Травля муравьёв",
+          "Обработка от муравьёв",
+          "Как избавиться от муравьёв",
+        ],
+      },
+      {
+        mainTitle: "Уничтожение блох",
+        subTitles: [
+          "Травля блох",
+          "Обработка от блох",
+          "Как избавиться от блох",
+        ],
+      },
+      {
+        mainTitle: "Уничтожение вшей",
+        subTitles: ["Обработка от вшей", "Как избавиться от вшей"],
+      },
+      {
+        mainTitle: "Уничтожение клещей",
+        subTitles: [
+          "Обработка от клещей",
+          "Акарицидная обработка",
+          "Как избавиться от клещей",
+        ],
+      },
+      {
+        mainTitle: "Уничтожение комаров",
+        subTitles: [
+          "Травля комаров",
+          "Обработка от комаров",
+          "Как избавиться от комаров",
+        ],
+      },
+      {
+        mainTitle: "Уничтожение мух",
+        subTitles: ["Обработка от мух", "Как избавиться от мух"],
+      },
+      {
+        mainTitle: "Уничтожение моли",
+        subTitles: ["Обработка от моли", "Как избавиться от моли"],
+      },
+      {
+        mainTitle: "Уничтожение ос",
+        subTitles: ["Обработка от ос", "Как избавиться от ос"],
+      },
+      {
+        mainTitle: "Уничтожение шершней",
+        subTitles: ["Обработка от шершней", "Как избавиться от шершней"],
+      },
+      {
+        mainTitle: "Уничтожение пауков",
+        subTitles: ["Обработка от пауков", "Как избавиться от пауков"],
+      },
+      {
+        mainTitle: "Уничтожение чешуйниц",
+        subTitles: ["Обработка от чешуйниц", "Как избавиться от чешуйниц"],
+      },
+      {
+        mainTitle: "Уничтожение короедов",
+        subTitles: ["Обработка от короедов", "Как избавиться от короедов"],
+      },
+      {
+        mainTitle: "Уничтожение кожеедов",
+        subTitles: ["Обработка от кожеедов", "Как избавиться от кожеедов"],
+      },
+      {
+        mainTitle: "Уничтожение мокриц",
+        subTitles: ["Обработка от мокриц", "Как избавиться от мокриц"],
+      },
+    ],
   },
   {
     slug: "dezinfekciya",
     heroTitle: "Дезинфекция",
-    heroImg: "/services/hero/disinfection-hero.png",
+    heroImg: "/services/hero/disinfection-hero.webp",
     desc: "Обработка от бактерий, вирусов, плесени.",
     meta: {
       title: "Дезинфекция помещений в Москве и области | DezPro",
@@ -142,9 +250,18 @@ const services = [
       description:
         "Используем современные дезинфицирующие средства, безопасные для людей и животных. Применяем профессиональное оборудование для равномерного распыления и полного покрытия всех поверхностей.",
       gallery: [
-        "Процесс дезинфекции",
-        "Результат обработки",
-        "Дезинфицирующие средства",
+        {
+          src: "/images/work-process/dezinfekciya/01-process.webp",
+          alt: "Процесс дезинфекции помещений от вирусов и бактерий",
+        },
+        {
+          src: "/images/work-process/dezinfekciya/02-result.webp",
+          alt: "Результат дезинфекции поверхностей",
+        },
+        {
+          src: "/images/work-process/dezinfekciya/03-means.webp",
+          alt: "Дезинфицирующие средства для обработки",
+        },
       ],
     },
     diy: {
@@ -152,11 +269,12 @@ const services = [
         "Узнайте, как правильно провести дезинфекцию своими руками. Важные советы по выбору средств и технике безопасности.",
       articleLink: "/diy/dezinfekciya",
     },
+    seoHeadings: [],
   },
   {
     slug: "deratizaciya",
     heroTitle: "Дератизация",
-    heroImg: "/services/hero/rats-hero.png",
+    heroImg: "/services/hero/rats-hero.webp",
     desc: "Уничтожение крыс и мышей.",
     meta: {
       title: "Дератизация в Москве и области | DezPro",
@@ -198,9 +316,18 @@ const services = [
       description:
         "Используем современные методы борьбы с грызунами: ловушки, приманки, ультразвуковые отпугиватели. Все средства безопасны для людей и домашних животных.",
       gallery: [
-        "Ловушки и приманки",
-        "Результат работы",
-        "Профилактические меры",
+        {
+          src: "/images/work-process/deratizaciya/01-traps.webp",
+          alt: "Ловушки и приманки для уничтожения крыс и мышей",
+        },
+        {
+          src: "/images/work-process/deratizaciya/02-result.webp",
+          alt: "Результат дератизации помещений",
+        },
+        {
+          src: "/images/work-process/deratizaciya/03-prevention.webp",
+          alt: "Профилактические меры от грызунов",
+        },
       ],
     },
     diy: {
@@ -208,11 +335,12 @@ const services = [
         "Узнайте, как самостоятельно избавиться от грызунов. Эффективные методы и меры предосторожности.",
       articleLink: "/diy/deratizaciya",
     },
+    seoHeadings: [],
   },
   {
     slug: "dlya-organizacij",
     heroTitle: "Для организаций",
-    heroImg: "/services/hero/office-hero.png",
+    heroImg: "/services/hero/office-hero.webp",
     desc: "Обработка офисов, кафе, гостиниц.",
     meta: {
       title:
@@ -254,9 +382,18 @@ const services = [
       description:
         "Работаем с организациями любого масштаба. Предоставляем полный пакет документов для Роспотребнадзора, работаем в удобное для клиента время, даем гарантии на результат.",
       gallery: [
-        "Обработка офиса",
-        "Работа в кафе",
-        "Документы для Роспотребнадзора",
+        {
+          src: "/images/work-process/dlya-organizacij/01-office.webp",
+          alt: "Обработка офисных помещений от вредителей",
+        },
+        {
+          src: "/images/work-process/dlya-organizacij/02-cafe.webp",
+          alt: "Дезинфекция кафе и ресторанов",
+        },
+        {
+          src: "/images/work-process/dlya-organizacij/03-documents.webp",
+          alt: "Документы для Роспотребнадзора",
+        },
       ],
     },
     diy: {
@@ -264,11 +401,12 @@ const services = [
         "Узнайте, как организовать дезинфекцию в офисе самостоятельно. Важные требования и рекомендации.",
       articleLink: "/diy/dlya-organizacij",
     },
+    seoHeadings: [],
   },
   {
     slug: "unichtozhenie-zapahov",
     heroTitle: "Уничтожение запахов",
-    heroImg: "/services/hero/smell-hero.png",
+    heroImg: "/services/hero/smell-hero.webp",
     desc: "После пожара, затоплений, квартир.",
     meta: {
       title: "Уничтожение запахов в Москве и области | DezPro",
@@ -312,9 +450,18 @@ const services = [
       description:
         "Используем современные технологии озонирования, нейтрализации и адсорбции. Работаем с любыми типами запахов: от бытовых до промышленных и трупных.",
       gallery: [
-        "Озонатор в работе",
-        "Результат нейтрализации",
-        "Специализированные средства",
+        {
+          src: "/images/work-process/unichtozhenie-zapahov/01-ozonator.webp",
+          alt: "Озонатор в работе для уничтожения запахов",
+        },
+        {
+          src: "/images/work-process/unichtozhenie-zapahov/02-result.webp",
+          alt: "Результат нейтрализации неприятных запахов",
+        },
+        {
+          src: "/images/work-process/unichtozhenie-zapahov/03-means.webp",
+          alt: "Специализированные средства от запахов",
+        },
       ],
     },
     diy: {
@@ -322,11 +469,12 @@ const services = [
         "Узнайте, как самостоятельно избавиться от неприятных запахов. Эффективные методы и ограничения.",
       articleLink: "/diy/unichtozhenie-zapahov",
     },
+    seoHeadings: [],
   },
   {
     slug: "prochie-uslugi",
     heroTitle: "Прочие услуги",
-    heroImg: "/services/hero/car-hero.png",
+    heroImg: "/services/hero/car-hero.webp",
     desc: "Обработка автомобилей, участков, акарицидная обработка.",
     meta: {
       title:
@@ -369,9 +517,18 @@ const services = [
       description:
         "Специализируемся на обработке автомобилей, дачных участков и акарицидной обработке от клещей. Используем безопасные для людей и животных средства.",
       gallery: [
-        "Обработка автомобиля",
-        "Работа на участке",
-        "Акарицидная обработка",
+        {
+          src: "/images/work-process/prochie-uslugi/01-car.webp",
+          alt: "Обработка автомобиля от вредителей",
+        },
+        {
+          src: "/images/work-process/prochie-uslugi/02-site.webp",
+          alt: "Работа на дачном участке",
+        },
+        {
+          src: "/images/work-process/prochie-uslugi/03-ticks.webp",
+          alt: "Акарицидная обработка от клещей",
+        },
       ],
     },
     diy: {
@@ -379,6 +536,7 @@ const services = [
         "Узнайте, как самостоятельно обработать автомобиль или участок от вредителей. Полезные советы и меры предосторожности.",
       articleLink: "/diy/prochie-uslugi",
     },
+    seoHeadings: [],
   },
 ];
 
