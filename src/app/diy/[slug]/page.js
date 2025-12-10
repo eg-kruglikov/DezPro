@@ -11,6 +11,39 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }) {
+  const slug = (await params).slug;
+  const article = diyArticles.find((a) => a.slug === slug);
+
+  if (!article) {
+    return {
+      title: "Статья не найдена | DezPro",
+      description: "Запрашиваемая статья не найдена",
+    };
+  }
+
+  const url = `https://dezpro.online/diy/${slug}/`;
+  const title = `${article.title} | DezPro — дезинфекция в Москве`;
+  const description = `Узнайте, как провести ${article.title.toLowerCase()} своими руками. Полезные советы и инструкции от профессионалов DezPro.`;
+
+  return {
+    title,
+    description,
+    keywords: `сделать самому, своими руками, ${article.slug}, дезинфекция Москва`,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url: url,
+      siteName: "DezPro",
+      locale: "ru_RU",
+      type: "article",
+    },
+  };
+}
+
 export default async function DiyArticle({ params }) {
   const slug = (await params).slug;
   const article = diyArticles.find((a) => a.slug === slug);

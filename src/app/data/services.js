@@ -43,7 +43,7 @@ const services = [
   {
     slug: "dezinkseciya",
     heroTitle: "Дезинсекция",
-    heroImg: "/services/hero/bugs-hero.webp",
+    heroImg: "/services/hero/bugs-hero.png",
     desc: "Избавление от насекомых: тараканы, клопы, муравьи.",
     meta: {
       title: "Дезинсекция в Москве и области | DezPro",
@@ -206,7 +206,7 @@ const services = [
   {
     slug: "dezinfekciya",
     heroTitle: "Дезинфекция",
-    heroImg: "/services/hero/disinfection-hero.webp",
+    heroImg: "/services/hero/disinfection-hero.png",
     desc: "Обработка от бактерий, вирусов, плесени.",
     meta: {
       title: "Дезинфекция помещений в Москве и области | DezPro",
@@ -274,7 +274,7 @@ const services = [
   {
     slug: "deratizaciya",
     heroTitle: "Дератизация",
-    heroImg: "/services/hero/rats-hero.webp",
+    heroImg: "/services/hero/rats-hero.png",
     desc: "Уничтожение крыс и мышей.",
     meta: {
       title: "Дератизация в Москве и области | DezPro",
@@ -340,7 +340,7 @@ const services = [
   {
     slug: "dlya-organizacij",
     heroTitle: "Для организаций",
-    heroImg: "/services/hero/office-hero.webp",
+    heroImg: "/services/hero/office-hero.png",
     desc: "Обработка офисов, кафе, гостиниц.",
     meta: {
       title:
@@ -406,7 +406,7 @@ const services = [
   {
     slug: "unichtozhenie-zapahov",
     heroTitle: "Уничтожение запахов",
-    heroImg: "/services/hero/smell-hero.webp",
+    heroImg: "/services/hero/smell-hero.png",
     desc: "После пожара, затоплений, квартир.",
     meta: {
       title: "Уничтожение запахов в Москве и области | DezPro",
@@ -474,7 +474,7 @@ const services = [
   {
     slug: "prochie-uslugi",
     heroTitle: "Прочие услуги",
-    heroImg: "/services/hero/car-hero.webp",
+    heroImg: "/services/hero/car-hero.png",
     desc: "Обработка автомобилей, участков, акарицидная обработка.",
     meta: {
       title:

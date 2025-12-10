@@ -3,12 +3,57 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import services from "@/app/data/services";
 import BackButton from "@/app/components/BackButton";
+import StructuredData from "@/app/components/StructuredData";
 import styles from "./page.module.css";
 
 export async function generateStaticParams() {
   return services.map((s) => ({
     slug: s.slug,
   }));
+}
+
+export async function generateMetadata({ params }) {
+  const slug = (await params).slug;
+  const service = services.find((s) => s.slug === slug);
+
+  if (!service || !service.meta) {
+    return {
+      title: "Услуга не найдена | DezPro",
+      description: "Запрашиваемая услуга не найдена",
+    };
+  }
+
+  const url = `https://dezpro.online/services/${slug}/`;
+
+  return {
+    title: service.meta.title,
+    description: service.meta.description,
+    keywords: service.meta.keywords,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: service.meta.title,
+      description: service.meta.description,
+      url: url,
+      siteName: "DezPro",
+      locale: "ru_RU",
+      type: "website",
+      images: [
+        {
+          url: `https://dezpro.online${service.heroImg}`,
+          width: 1200,
+          height: 630,
+          alt: service.heroTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: service.meta.title,
+      description: service.meta.description,
+    },
+  };
 }
 
 export default async function ServicePage({ params }) {
@@ -18,8 +63,54 @@ export default async function ServicePage({ params }) {
     return notFound();
   }
 
+  // Структурированные данные для услуги
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.heroTitle,
+    description: service.desc,
+    provider: {
+      "@type": "LocalBusiness",
+      name: "DezPro",
+      telephone: "+79969960982",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Ивантеевка",
+        addressRegion: "Московская область",
+        addressCountry: "RU",
+      },
+      areaServed: [
+        {
+          "@type": "City",
+          name: "Москва",
+        },
+        {
+          "@type": "State",
+          name: "Московская область",
+        },
+      ],
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Москва",
+      },
+      {
+        "@type": "State",
+        name: "Московская область",
+      },
+    ],
+    offers: service.pricing?.map((item) => ({
+      "@type": "Offer",
+      name: item.title,
+      price: item.price,
+      priceCurrency: "RUB",
+    })),
+  };
+
   return (
     <main className={styles.servicePage}>
+      <StructuredData data={serviceSchema} />
       <div className={styles.container}>
         {/* Hero блок */}
         <section className={styles.hero}>

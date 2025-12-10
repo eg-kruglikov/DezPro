@@ -2,8 +2,19 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 export const metadata = {
-  title: "Контакты — DezPro",
-  description: "Свяжитесь с DezPro: телефон, почта, заявки онлайн",
+  title: "Контакты — DezPro | Дезинфекция в Москве и области",
+  description:
+    "Свяжитесь с DezPro: телефон +7 (996) 996-09-82. Адрес: г. Ивантеевка, Московская область. Выезд в день обращения по Москве и области.",
+  keywords:
+    "контакты DezPro, телефон службы дезинфекции, адрес дезинфекции Москва, дезинфекция Ивантеевка",
+  alternates: {
+    canonical: "https://dezpro.online/contacts/",
+  },
+  openGraph: {
+    title: "Контакты — DezPro",
+    description: "Свяжитесь с DezPro для заказа услуг дезинфекции в Москве и области",
+    url: "https://dezpro.online/contacts",
+  },
 };
 
 export default function ContactsPage() {
