@@ -1,5 +1,9 @@
+# *
 User-agent: *
-Disallow:
+Allow: /
 
+# Host
+Host: https://dezpro.online
+
+# Sitemaps
 Sitemap: https://dezpro.online/sitemap.xml
-Host: dezpro.online

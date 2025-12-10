@@ -1,98 +1,72 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
+import { servicesList } from "./data/services.js";
 
 export const metadata = {
-  title: "DezPro — профессиональная дезинфекция и дезинсекция",
+  title: "DezPro — профессиональная дезинфекция и дезинсекция в Москве и области",
   description:
-    "Услуги по дезинфекции, дезинсекции, дератизации. Быстро, безопасно, с гарантией. Telegram и WhatsApp для заявок.",
+    "Профессиональная дезинфекция, дезинсекция и дератизация в Москве и Московской области. Уничтожение насекомых, грызунов, вирусов и бактерий. Быстро, безопасно, с гарантией. Выезд в день обращения.",
+  keywords:
+    "дезинфекция Москва, дезинсекция Москва, дератизация Москва, уничтожение тараканов, уничтожение клопов, обработка от насекомых, дезинфекция квартир, дезинфекция офисов, служба дезинфекции",
+  alternates: {
+    canonical: "https://dezpro.online/",
+  },
+  openGraph: {
+    title: "DezPro — профессиональная дезинфекция в Москве и области",
+    description:
+      "Профессиональная дезинфекция, дезинсекция и дератизация. Быстро, безопасно, с гарантией.",
+    url: "https://dezpro.online",
+    images: [
+      {
+        url: "https://dezpro.online/hero.webp",
+        width: 1200,
+        height: 630,
+        alt: "DezPro — профессиональная дезинфекция",
+      },
+    ],
+  },
 };
 
 export default function HomePage() {
   return (
     <main>
       {/* Hero */}
-      <section
-        className={styles.hero}
-        style={{
-          backgroundImage: `url(/hero.png)`,
-          backgroundPosition: "15% center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
+      <section className={styles.hero}>
+        <Image
+          src="/hero.webp"
+          alt="Профессиональная дезинфекция DezPro"
+          fill
+          priority
+          quality={80}
+          sizes="100vw"
+          fetchPriority="high"
+          style={{
+            objectFit: "cover",
+            objectPosition: "15% center",
+          }}
+          className={styles.bg}
+        />
+        <div className={styles.overlay} />
         <div className={styles.heroContent}>
-          <h1>DezPro — за чистоту и безопасность</h1>
+          <h1>
+            <span className={styles.brand}>DezPro</span> — за чистоту и
+            безопасность
+          </h1>
           <p>
             Профессиональная дезинфекция и дезинсекция. Быстро, безопасно, с
             гарантией.
           </p>
-          <div className={styles.buttons}>
-            <a
-              href="https://t.me/your_username"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.btnPrimary}
-            >
-              <img src="/telegram.svg" alt="Telegram" width="20" height="20" />
-              <span>Написать в Telegram</span>
-            </a>
-            <a
-              href="https://wa.me/79998887766"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.btnSecondary}
-            >
-              <img src="/whatsapp.svg" alt="WhatsApp" width="20" height="20" />
-              <span>Написать в WhatsApp</span>
-            </a>
-          </div>
         </div>
       </section>
 
       {/* Услуги */}
-      <section className={styles.services}>
+      <section id="services" className={styles.services}>
         <div className={styles.container}>
-          <h2>Наши услуги</h2>
+          <h2>Услуги и советы по самостоятельной обработке</h2>
+
           <div className={styles.grid}>
-            {[
-              {
-                title: "Дезинсекция",
-                desc: "Избавление от насекомых: тараканы, клопы, муравьи.",
-                img: "/services/cockroach.png",
-                slug: "dezinkseciya",
-              },
-              {
-                title: "Дезинфекция",
-                desc: "Обработка от бактерий, вирусов, плесени.",
-                img: "/services/disinfection.png",
-                slug: "dezinfekciya",
-              },
-              {
-                title: "Дератизация",
-                desc: "Уничтожение крыс и мышей.",
-                img: "/services/rat.png",
-                slug: "deratizaciya",
-              },
-              {
-                title: "Для организаций",
-                desc: "Обработка офисов, кафе, гостиниц.",
-                img: "/services/office.png",
-                slug: "dlya-organizacij",
-              },
-              {
-                title: "Уничтожение запахов",
-                desc: "После пожара, затоплений, квартир.",
-                img: "/services/smell.png",
-                slug: "unichtozhenie-zapahov",
-              },
-              {
-                title: "Прочие услуги",
-                desc: "Обработка автомобилей, участков, акарицидная обработка.",
-                img: "/services/car.png",
-                slug: "prochie-uslugi",
-              },
-            ].map((service, i) => (
+            {servicesList.map((service, i) => (
               <div key={i} className={styles.card}>
                 <div className={styles.cardText}>
                   <h3>{service.title}</h3>
@@ -110,6 +84,36 @@ export default function HomePage() {
                 ></div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Лицензии */}
+      <section id="licenses" className={styles.licenses}>
+        <div className={styles.container}>
+          <h2>Лицензии и документы</h2>
+          <p className={styles.subtitle}>
+            Мы работаем легально и имеем все необходимые разрешения.
+            Ознакомьтесь с нашей лицензией Роспотребнадзора.
+          </p>
+          <div className={styles.licenseBlock}>
+            <Image
+              src="/license-preview.webp"
+              alt="Лицензия Роспотребнадзора"
+              className={styles.licenseImage}
+              width={300}
+              height={400}
+            />
+            <div className={styles.buttons}>
+              <a
+                href="/docs/license.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.btnPrimary}
+              >
+                📄 Скачать лицензию (PDF)
+              </a>
+            </div>
           </div>
         </div>
       </section>
