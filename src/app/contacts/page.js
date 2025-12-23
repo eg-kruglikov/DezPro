@@ -13,7 +13,7 @@ export const metadata = {
   openGraph: {
     title: "Контакты — DezPro",
     description: "Свяжитесь с DezPro для заказа услуг дезинфекции в Москве и области",
-    url: "https://dezpro.online/contacts",
+    url: "https://dezpro.online/contacts/",
   },
 };
 

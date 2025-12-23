@@ -1,7 +1,15 @@
 import "./globals.css";
+import { Anton } from "next/font/google";
 import Header from "./components/Header/Header";
 import YandexMetrika from "./components/YandexMetrika";
 import StructuredData from "./components/StructuredData";
+
+const anton = Anton({
+  weight: "400",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  variable: "--font-anton",
+});
 
 export const metadata = {
   title: "DezPro — профессиональная дезинфекция в Москве и области",
@@ -9,6 +17,13 @@ export const metadata = {
     "Профессиональная дезинфекция, дезинсекция и дератизация в Москве и Московской области. Быстро, безопасно, с гарантией. Выезд в день обращения.",
   keywords:
     "дезинфекция Москва, дезинсекция Москва, дератизация Москва, обработка от насекомых, уничтожение грызунов, дезинфекция квартир, дезинфекция офисов, служба дезинфекции",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/logo.png", sizes: "120x120", type: "image/png" },
+    ],
+    apple: "/logo.png",
+  },
   alternates: {
     canonical: "https://dezpro.online/",
   },
@@ -82,17 +97,19 @@ const organizationSchema = {
     opens: "09:00",
     closes: "20:00",
   },
-  sameAs: [
-    "https://wa.me/79969960982",
-    "https://t.me/+79969960982",
-  ],
+  sameAs: ["https://wa.me/79969960982", "https://t.me/+79969960982"],
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ru">
+    <html lang="ru" className={anton.variable}>
       <head>
         <StructuredData data={organizationSchema} />
+        {/* Favicon для Яндекс */}
+        <link rel="icon" type="image/png" sizes="120x120" href="/logo.png" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        {/* Preload ключевых ресурсов */}
+        <link rel="preload" as="image" href="/hero.webp" />
       </head>
       <body>
         <Header />

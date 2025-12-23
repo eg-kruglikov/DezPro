@@ -1,40 +1,81 @@
-// src/app/services/[slug]/page.js
+// src/app/services/[slug]/[city]/page.js
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import services from "@/app/data/services";
+import cities from "@/app/data/cities";
 import BackButton from "@/app/components/BackButton";
 import StructuredData from "@/app/components/StructuredData";
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 
 export async function generateStaticParams() {
-  return services.map((s) => ({
-    slug: s.slug,
-  }));
+  const params = [];
+  services.forEach((service) => {
+    cities.forEach((city) => {
+      params.push({
+        slug: service.slug,
+        city: city.slug,
+      });
+    });
+  });
+  return params;
 }
 
 export async function generateMetadata({ params }) {
-  const slug = (await params).slug;
+  const { slug, city: citySlug } = await params;
   const service = services.find((s) => s.slug === slug);
+  const city = cities.find((c) => c.slug === citySlug);
 
-  if (!service || !service.meta) {
+  if (!service || !service.meta || !city) {
     return {
       title: "Услуга не найдена | DezPro",
       description: "Запрашиваемая услуга не найдена",
     };
   }
 
-  const url = `https://dezpro.online/services/${slug}/`;
+  const url = `https://dezpro.online/services/${slug}/${citySlug}/`;
+
+  // Уникальные метаданные с городом
+  // Для "Прочие услуги" используем более SEO-оптимизированный title
+  let title;
+  if (slug === "prochie-uslugi") {
+    title = `Дезинфекция автомобиля и обработка участка от клещей в ${city.name} | DezPro`;
+  } else {
+    title = `${service.heroTitle} в ${city.name} | DezPro`;
+  }
+  
+  // Формируем description с учетом города
+  let description;
+  if (service.meta.description.includes("в Москве и области")) {
+    description = `${service.meta.description.replace(
+      "в Москве и области",
+      `в ${city.name}`
+    )} Выезд в день обращения.`;
+  } else if (slug === "prochie-uslugi") {
+    // Для "Прочие услуги" создаем description с городом
+    description = `Профессиональная дезинфекция автомобиля, обработка салона авто, акарицидная обработка дачного участка от клещей в ${city.name}. Обработка участка от клещей цена, дезинфекция авто цена. Гарантия результата, выезд в день обращения.`;
+  } else {
+    // Для остальных услуг просто добавляем город
+    description = `${service.meta.description} в ${city.name}. Выезд в день обращения.`;
+  }
+
+  // Улучшенные keywords для страниц с городами
+  let keywords = `${service.meta.keywords}, ${city.name}`;
+  if (slug === "prochie-uslugi") {
+    keywords = `${service.meta.keywords}, дезинфекция автомобиля ${city.name}, обработка участка от клещей ${city.name}, дезинфекция авто ${city.name}, акарицидная обработка ${city.name}, дезинфекция ${city.name}`;
+  } else {
+    keywords = `${service.meta.keywords}, ${city.name}, дезинфекция ${city.name}`;
+  }
 
   return {
-    title: service.meta.title,
-    description: service.meta.description,
-    keywords: service.meta.keywords,
+    title,
+    description,
+    keywords,
     alternates: {
       canonical: url,
     },
     openGraph: {
-      title: service.meta.title,
-      description: service.meta.description,
+      title,
+      description,
       url: url,
       siteName: "DezPro",
       locale: "ru_RU",
@@ -44,31 +85,33 @@ export async function generateMetadata({ params }) {
           url: `https://dezpro.online${service.heroImg}`,
           width: 1200,
           height: 630,
-          alt: service.heroTitle,
+          alt: `${service.heroTitle} в ${city.name}`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: service.meta.title,
-      description: service.meta.description,
+      title,
+      description,
     },
   };
 }
 
-export default async function ServicePage({ params }) {
-  const slug = (await params).slug;
+export default async function ServiceCityPage({ params }) {
+  const { slug, city: citySlug } = await params;
   const service = services.find((s) => s.slug === slug);
-  if (!service) {
+  const city = cities.find((c) => c.slug === citySlug);
+
+  if (!service || !city) {
     return notFound();
   }
 
-  // Структурированные данные для услуги
+  // Структурированные данные с указанием города
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: service.heroTitle,
-    description: service.desc,
+    name: `${service.heroTitle} в ${city.name}`,
+    description: `${service.desc} в ${city.name}`,
     provider: {
       "@type": "LocalBusiness",
       name: "DezPro",
@@ -82,7 +125,7 @@ export default async function ServicePage({ params }) {
       areaServed: [
         {
           "@type": "City",
-          name: "Москва",
+          name: city.name,
         },
         {
           "@type": "State",
@@ -93,11 +136,7 @@ export default async function ServicePage({ params }) {
     areaServed: [
       {
         "@type": "City",
-        name: "Москва",
-      },
-      {
-        "@type": "State",
-        name: "Московская область",
+        name: city.name,
       },
     ],
     offers: service.pricing?.map((item) => ({
@@ -112,14 +151,19 @@ export default async function ServicePage({ params }) {
     <main className={styles.servicePage}>
       <StructuredData data={serviceSchema} />
       <div className={styles.container}>
-        {/* Hero блок */}
+        {/* Hero блок с городом */}
         <section className={styles.hero}>
           <div className={styles.heroContent}>
-            <h1>{service.heroTitle}</h1>
-            <p>{service.desc}</p>
+            <h1>
+              {service.heroTitle} в {city.name}
+            </h1>
+            <p>
+              {service.desc} Работаем в {city.namePrepositional} и прилегающих
+              районах. Выезд в день обращения.
+            </p>
             <Image
               src={service.heroImg}
-              alt={service.heroTitle}
+              alt={`${service.heroTitle} в ${city.name}`}
               className={styles.heroImage}
               width={800}
               height={450}
@@ -167,7 +211,11 @@ export default async function ServicePage({ params }) {
           <h2>Как мы работаем?</h2>
           <div className={styles.workContent}>
             <div className={styles.workText}>
-              <p>{service.workProcess.description}</p>
+              <p>
+                {service.workProcess.description} Работаем в {city.name} и
+                прилегающих районах Московской области. Выезд специалиста в
+                день обращения.
+              </p>
             </div>
             <div className={styles.gallery}>
               {service.workProcess.gallery.map((item, index) => (
@@ -241,3 +289,4 @@ export default async function ServicePage({ params }) {
     </main>
   );
 }
+

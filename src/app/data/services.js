@@ -31,7 +31,7 @@ export const servicesList = [
     slug: "unichtozhenie-zapahov",
   },
   {
-    title: "Прочие услуги",
+    title: "Дезинфекция автомобиля и обработка участка",
     desc: "Обработка автомобилей, участков, акарицидная обработка.",
     img: "/services/car.webp",
     slug: "prochie-uslugi",
@@ -89,19 +89,19 @@ const services = [
         "Мы закрываем мебель, обрабатываем все поверхности безопасной химией, используем современное оборудование и даем гарантию на результат. Все препараты сертифицированы и безопасны для людей и животных.",
       gallery: [
         {
-          src: "/images/work-process/dezinkseciya/01-process.webp",
+          src: "/images/portfolio/dezinkseciya/01-work.webp",
           alt: "Процесс дезинсекции от тараканов и клопов",
         },
         {
-          src: "/images/work-process/dezinkseciya/02-result.webp",
+          src: "/images/portfolio/dezinkseciya/02-result.webp",
           alt: "Результат обработки от насекомых",
         },
         {
-          src: "/images/work-process/dezinkseciya/03-equipment.webp",
+          src: "/images/portfolio/dezinkseciya/03-equipment.webp",
           alt: "Оборудование для дезинсекции",
         },
         {
-          src: "/images/work-process/dezinkseciya/01.MP4",
+          src: "/images/portfolio/dezinkseciya/01.MP4",
           alt: "Видео процесса дезинсекции",
           type: "video",
         },
@@ -251,15 +251,15 @@ const services = [
         "Используем современные дезинфицирующие средства, безопасные для людей и животных. Применяем профессиональное оборудование для равномерного распыления и полного покрытия всех поверхностей.",
       gallery: [
         {
-          src: "/images/work-process/dezinfekciya/01-process.webp",
+          src: "/images/portfolio/dezinfekciya/01-work.webp",
           alt: "Процесс дезинфекции помещений от вирусов и бактерий",
         },
         {
-          src: "/images/work-process/dezinfekciya/02-result.webp",
+          src: "/images/portfolio/dezinfekciya/02-result.webp",
           alt: "Результат дезинфекции поверхностей",
         },
         {
-          src: "/images/work-process/dezinfekciya/03-means.webp",
+          src: "/images/portfolio/dezinfekciya/03-equipment.webp",
           alt: "Дезинфицирующие средства для обработки",
         },
       ],
@@ -317,15 +317,15 @@ const services = [
         "Используем современные методы борьбы с грызунами: ловушки, приманки, ультразвуковые отпугиватели. Все средства безопасны для людей и домашних животных.",
       gallery: [
         {
-          src: "/images/work-process/deratizaciya/01-traps.webp",
+          src: "/images/portfolio/deratizaciya/01-work.webp",
           alt: "Ловушки и приманки для уничтожения крыс и мышей",
         },
         {
-          src: "/images/work-process/deratizaciya/02-result.webp",
+          src: "/images/portfolio/deratizaciya/02-result.webp",
           alt: "Результат дератизации помещений",
         },
         {
-          src: "/images/work-process/deratizaciya/03-prevention.webp",
+          src: "/images/portfolio/deratizaciya/03-equipment.webp",
           alt: "Профилактические меры от грызунов",
         },
       ],
@@ -383,15 +383,15 @@ const services = [
         "Работаем с организациями любого масштаба. Предоставляем полный пакет документов для Роспотребнадзора, работаем в удобное для клиента время, даем гарантии на результат.",
       gallery: [
         {
-          src: "/images/work-process/dlya-organizacij/01-office.webp",
+          src: "/images/portfolio/dlya-organizacij/01-work.webp",
           alt: "Обработка офисных помещений от вредителей",
         },
         {
-          src: "/images/work-process/dlya-organizacij/02-cafe.webp",
+          src: "/images/portfolio/dlya-organizacij/02-result.webp",
           alt: "Дезинфекция кафе и ресторанов",
         },
         {
-          src: "/images/work-process/dlya-organizacij/03-documents.webp",
+          src: "/images/portfolio/dlya-organizacij/03-documents.webp",
           alt: "Документы для Роспотребнадзора",
         },
       ],
@@ -451,15 +451,15 @@ const services = [
         "Используем современные технологии озонирования, нейтрализации и адсорбции. Работаем с любыми типами запахов: от бытовых до промышленных и трупных.",
       gallery: [
         {
-          src: "/images/work-process/unichtozhenie-zapahov/01-ozonator.webp",
+          src: "/images/portfolio/unichtozhenie-zapahov/01-work.webp",
           alt: "Озонатор в работе для уничтожения запахов",
         },
         {
-          src: "/images/work-process/unichtozhenie-zapahov/02-result.webp",
+          src: "/images/portfolio/unichtozhenie-zapahov/02-result.webp",
           alt: "Результат нейтрализации неприятных запахов",
         },
         {
-          src: "/images/work-process/unichtozhenie-zapahov/03-means.webp",
+          src: "/images/portfolio/unichtozhenie-zapahov/03-equipment.webp",
           alt: "Специализированные средства от запахов",
         },
       ],
@@ -473,16 +473,16 @@ const services = [
   },
   {
     slug: "prochie-uslugi",
-    heroTitle: "Прочие услуги",
+    heroTitle: "Дезинфекция автомобиля и обработка участка от клещей",
     heroImg: "/services/hero/car-hero.png",
     desc: "Обработка автомобилей, участков, акарицидная обработка.",
     meta: {
       title:
-        "Прочие услуги DezPro в Москве и области | Дезинфекция автомобилей и участков",
+        "Дезинфекция автомобиля и обработка участка от клещей в Москве и области | DezPro",
       description:
-        "Обработка автомобилей, дачных участков, акарицидная обработка от клещей. Гарантия результата.",
+        "Профессиональная дезинфекция автомобиля, обработка салона авто, акарицидная обработка дачного участка от клещей. Обработка участка от клещей цена, дезинфекция авто цена. Гарантия результата, выезд в день обращения.",
       keywords:
-        "дезинфекция авто, обработка от клещей, акарицидная обработка участка",
+        "дезинфекция автомобиля, дезинфекция авто, обработка салона автомобиля, дезинфекция машины, обработка авто от запаха, дезинфекция авто цена, обработка участка от клещей, акарицидная обработка участка, обработка от клещей на даче, обработка дачного участка от клещей, акарицидная обработка дачного участка, обработка участка от клещей цена, дезинфекция дачного участка, обработка авто после коронавируса, дезинфекция салона авто",
     },
     procedure: {
       steps: [
@@ -518,15 +518,15 @@ const services = [
         "Специализируемся на обработке автомобилей, дачных участков и акарицидной обработке от клещей. Используем безопасные для людей и животных средства.",
       gallery: [
         {
-          src: "/images/work-process/prochie-uslugi/01-car.webp",
+          src: "/images/portfolio/prochie-uslugi/01-work.webp",
           alt: "Обработка автомобиля от вредителей",
         },
         {
-          src: "/images/work-process/prochie-uslugi/02-site.webp",
+          src: "/images/portfolio/prochie-uslugi/02-result.webp",
           alt: "Работа на дачном участке",
         },
         {
-          src: "/images/work-process/prochie-uslugi/03-ticks.webp",
+          src: "/images/portfolio/prochie-uslugi/03-equipment.webp",
           alt: "Акарицидная обработка от клещей",
         },
       ],
@@ -536,7 +536,44 @@ const services = [
         "Узнайте, как самостоятельно обработать автомобиль или участок от вредителей. Полезные советы и меры предосторожности.",
       articleLink: "/diy/prochie-uslugi",
     },
-    seoHeadings: [],
+    seoHeadings: [
+      {
+        mainTitle: "Дезинфекция автомобиля",
+        subTitles: [
+          "Дезинфекция авто",
+          "Дезинфекция машины",
+          "Обработка салона автомобиля",
+          "Дезинфекция салона авто",
+          "Обработка авто от запаха",
+          "Дезинфекция автомобиля цена",
+          "Обработка авто после коронавируса",
+          "Дезинфекция авто в Москве",
+        ],
+      },
+      {
+        mainTitle: "Обработка участка от клещей",
+        subTitles: [
+          "Акарицидная обработка участка",
+          "Обработка от клещей на даче",
+          "Обработка дачного участка от клещей",
+          "Акарицидная обработка дачного участка",
+          "Обработка участка от клещей цена",
+          "Дезинфекция дачного участка",
+          "Обработка участка от клещей в Москве",
+          "Акарицидная обработка цена",
+        ],
+      },
+      {
+        mainTitle: "Дезинфекция автомобиля и участка",
+        subTitles: [
+          "Обработка автомобилей и участков",
+          "Дезинфекция авто и участка",
+          "Комплексная обработка автомобиля и участка",
+          "Профессиональная дезинфекция авто",
+          "Профессиональная обработка участка от клещей",
+        ],
+      },
+    ],
   },
 ];
 

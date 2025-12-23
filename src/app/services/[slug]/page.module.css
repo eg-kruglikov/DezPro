@@ -230,17 +230,19 @@
 /* Блок "Можно ли сделать самому" */
 .diy {
   margin-bottom: 60px;
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #000;
   padding: 40px;
   border-radius: 12px;
   text-align: center;
+  border: 2px solid #f2cb05;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .diy h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #fff;
+  color: #000;
 }
 
 .diyContent p {
@@ -250,6 +252,7 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  color: #333;
 }
 
 .articleBtn {
@@ -423,9 +426,14 @@
     gap: 30px;
   }
 
-  .pricing,
-  .diy {
+  .pricing {
     padding: 30px 20px;
+  }
+
+  .diy {
+    padding: 30px var(--mobile-padding);
+    margin-left: var(--mobile-padding);
+    margin-right: var(--mobile-padding);
   }
 
   .seoHeadings {
