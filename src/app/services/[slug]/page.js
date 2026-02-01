@@ -56,6 +56,20 @@ export async function generateMetadata({ params }) {
   };
 }
 
+// Функция для получения названия сервиса в родительном падеже для заголовка
+function getServiceTitleGenitive(slug, heroTitle) {
+  const titleMap = {
+    dezinkseciya: "дезинсекции",
+    dezinfekciya: "дезинфекции",
+    deratizaciya: "дератизации",
+    "dlya-organizacij": "обработки для организаций",
+    "unichtozhenie-zapahov": "уничтожения запахов",
+    "prochie-uslugi": "дезинфекции автомобиля и обработки участка",
+  };
+
+  return titleMap[slug] || heroTitle.toLowerCase();
+}
+
 export default async function ServicePage({ params }) {
   const slug = (await params).slug;
   const service = services.find((s) => s.slug === slug);
@@ -130,7 +144,7 @@ export default async function ServicePage({ params }) {
 
         {/* Сколько это стоит */}
         <section className={styles.pricing}>
-          <h2>Сколько это стоит?</h2>
+          <h2>Стоимость {getServiceTitleGenitive(slug, service.heroTitle)}</h2>
           <div className={styles.priceCards}>
             {service.pricing.map((item, index) => (
               <div key={index} className={styles.priceCard}>
@@ -148,7 +162,7 @@ export default async function ServicePage({ params }) {
 
         {/* Как проходит процедура */}
         <section className={styles.procedure}>
-          <h2>Как проходит процедура?</h2>
+          <h2>Как проводится дезинфекция?</h2>
           <div className={styles.steps}>
             {service.procedure.steps.map((step, index) => (
               <div key={index} className={styles.step}>
@@ -202,6 +216,34 @@ export default async function ServicePage({ params }) {
               ))}
             </div>
           </div>
+        </section>
+
+        {/* С нами легко сотрудничать */}
+        <section className={styles.contactBlock}>
+          <h2>С нами легко сотрудничать</h2>
+          <p className={styles.contactDescription}>
+            К нам легко записаться на услуги, мы оперативно выезжаем на место,
+            убедитесь сами
+          </p>
+          <a href="tel:+79969960982" className={styles.phoneNumber}>
+            +7 (996) 996-09-82
+          </a>
+          <a
+            href={
+              "https://t.me/+79969960982" +
+              "?text=" +
+              encodeURIComponent(
+                "Здравствуйте! Хочу получить консультацию по услугам DezPro."
+              )
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать в Telegram"
+            className={styles.telegramButton}
+          >
+            <Image src="/telegram.svg" alt="Telegram" width={20} height={20} />
+            <span>Написать в Telegram</span>
+          </a>
         </section>
 
         {/* Можно ли сделать самому */}

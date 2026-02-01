@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import diyArticles from "@/app/data/diyArticles";
 import Link from "next/link";
+import FAQ from "@/app/components/FAQ/FAQ";
 import styles from "./page.module.css";
 
 export async function generateStaticParams() {
@@ -97,12 +98,106 @@ export default async function DiyArticle({ params }) {
     "prochie-uslugi": "Обработка автомобиля и участка своими руками",
   };
 
+  // Описания для страниц
+  const descriptions = {
+    dezinkseciya:
+      "Пошаговые инструкции по уничтожению тараканов, клопов, муравьев, блох, клещей, ос, комаров, мух, моли, пауков, сколопендр и других насекомых своими руками. Эффективные методы, народные средства и меры безопасности от профессионалов DezPro.",
+    dezinfekciya:
+      "Как провести дезинфекцию помещения своими руками. Выбор средств, подготовка, техника безопасности. Когда нужна профессиональная помощь.",
+    deratizaciya:
+      "Полное руководство по борьбе с крысами и мышами своими руками: отличия крыс от мышей, механические ловушки, клеевые ловушки, народные методы (мята, дёготь, опалённые шкурки), яды и приманки (парафиновые брикеты, зерно, тестово-сырные брикеты), борьба с полевками на огородах, защита дома от грызунов, методы для курятников и полей. Как определить заражение, выбрать метод и когда вызывать специалистов.",
+    "dlya-organizacij":
+      "Дезинфекция и дезинсекция в офисе своими силами. Требования Роспотребнадзора, ограничения самостоятельной обработки, когда нужны лицензированные специалисты.",
+    "unichtozhenie-zapahov":
+      "Как убрать неприятный запах в квартире самому: после пожара, затопления, трупный запах. Домашние методы, озонаторы, когда нужны специалисты.",
+    "prochie-uslugi":
+      "Обработка автомобиля и дачного участка своими руками. Дезинфекция авто, акарицидная обработка от клещей. Ограничения домашних методов.",
+  };
+
   const h1Title = h1Titles[slug] || article.title;
+  const pageDescription = descriptions[slug] || 
+    `Узнайте, как провести ${article.title.toLowerCase()} своими руками. Полезные советы и инструкции от профессионалов DezPro.`;
+
+  // Извлекаем FAQ из секций
+  const faqSection = article.sections.find(
+    (s) => s.id === "chasto-zadavaemye-voprosy" || 
+           s.heading.toLowerCase().includes("часто задаваемые вопросы") ||
+           s.heading.toLowerCase().includes("faq")
+  );
+
+  // Парсим FAQ вопросы и ответы
+  const parseFAQ = (text) => {
+    if (!text) return [];
+    
+    const items = [];
+    const lines = text.split("\n");
+    let currentQuestion = null;
+    let currentAnswer = [];
+    let skipIntro = true;
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      
+      // Пропускаем пустые строки в начале
+      if (skipIntro && (line === "" || line.includes("Ответы на самые частые вопросы"))) {
+        continue;
+      }
+      skipIntro = false;
+
+      // Проверяем, является ли строка вопросом (начинается с цифры и точки)
+      const questionMatch = line.match(/^(\d+)\.\s+(.+)$/);
+      if (questionMatch) {
+        // Сохраняем предыдущий вопрос, если есть
+        if (currentQuestion) {
+          const answerText = currentAnswer.join("\n").trim();
+          if (answerText) {
+            items.push({
+              question: currentQuestion,
+              answer: answerText,
+            });
+          }
+        }
+        // Начинаем новый вопрос
+        currentQuestion = questionMatch[2];
+        currentAnswer = [];
+      } else if (currentQuestion) {
+        // Проверяем, не начинается ли следующий вопрос
+        const nextQuestionMatch = line.match(/^(\d+)\.\s+(.+)$/);
+        if (!nextQuestionMatch && line) {
+          // Добавляем к ответу
+          currentAnswer.push(line);
+        }
+      }
+    }
+
+    // Добавляем последний вопрос
+    if (currentQuestion) {
+      const answerText = currentAnswer.join("\n").trim();
+      if (answerText) {
+        items.push({
+          question: currentQuestion,
+          answer: answerText,
+        });
+      }
+    }
+
+    return items;
+  };
+
+  const faqItems = faqSection ? parseFAQ(faqSection.text) : [];
+
+  // Фильтруем секции, исключая FAQ
+  const contentSections = article.sections.filter(
+    (s) => s.id !== "chasto-zadavaemye-voprosy" && 
+           !s.heading.toLowerCase().includes("часто задаваемые вопросы") &&
+           !s.heading.toLowerCase().includes("faq")
+  );
 
   return (
     <main className={styles.articlePage}>
       <div className={styles.container}>
         <h1 className={styles.title}>{h1Title}</h1>
+        <p className={styles.description}>{pageDescription}</p>
 
         <nav className={styles.navigation}>
           <h2 className={styles.navTitle}>Содержание</h2>
@@ -180,7 +275,8 @@ export default async function DiyArticle({ params }) {
                 </div>
               </>
             ) : (
-              article.sections.map((section, index) => (
+              <>
+                {contentSections.map((section, index) => (
                 <a
                   key={index}
                   href={`#${section.id}`}
@@ -188,12 +284,21 @@ export default async function DiyArticle({ params }) {
                 >
                   {section.heading}
                 </a>
-              ))
+                ))}
+                {faqItems.length > 0 && (
+                  <a
+                    href="#faq-section"
+                    className={`${styles.navLink} ${styles.faqLink}`}
+                  >
+                    Часто задаваемые вопросы (FAQ)
+                  </a>
+                )}
+              </>
             )}
           </div>
         </nav>
 
-        {article.sections.map((section, index) => (
+        {contentSections.map((section, index) => (
           <section key={index} id={section.id} className={styles.section}>
             <h2>{section.heading}</h2>
             <div className={styles.textContent}>
@@ -255,6 +360,7 @@ export default async function DiyArticle({ params }) {
           </div>
         </div>
       </div>
+      <FAQ items={faqItems} />
     </main>
   );
 }

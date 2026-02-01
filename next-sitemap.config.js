@@ -11,7 +11,7 @@ module.exports = {
 
     if (path === "/") {
       priority = 1.0;
-    } else if (path === "/about" || path === "/contacts") {
+    } else if (path === "/contacts") {
       priority = 0.8;
     } else if (path.startsWith("/services")) {
       priority = 0.7;

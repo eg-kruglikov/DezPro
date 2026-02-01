@@ -42,20 +42,30 @@ export async function generateMetadata({ params }) {
   } else {
     title = `${service.heroTitle} в ${city.name} | DezPro`;
   }
-  
-  // Формируем description с учетом города
+
+  // Формируем description с учетом города - уникальные для каждого города и услуги
   let description;
-  if (service.meta.description.includes("в Москве и области")) {
-    description = `${service.meta.description.replace(
-      "в Москве и области",
-      `в ${city.name}`
-    )} Выезд в день обращения.`;
+
+  if (slug === "dezinkseciya") {
+    description = `Профессиональное уничтожение тараканов, клопов, муравьев и других насекомых в ${city.name}. Эффективная дезинсекция с гарантией результата. Работаем в ${city.namePrepositional} и прилегающих районах. Выезд специалиста в день обращения.`;
+  } else if (slug === "dezinfekciya") {
+    description = `Профессиональная дезинфекция от вирусов, бактерий и плесени в ${city.name}. Гарантия чистоты и безопасности помещений. Обработка квартир, офисов и производственных площадей в ${city.namePrepositional}. Выезд в день обращения.`;
+  } else if (slug === "deratizaciya") {
+    description = `Профессиональная борьба с крысами и мышами в ${city.name}. Безопасные и эффективные методы уничтожения грызунов. Работаем в ${city.namePrepositional} и близлежащих населенных пунктах. Выезд специалиста в день обращения.`;
+  } else if (slug === "dlya-organizacij") {
+    description = `Профессиональная обработка офисов, кафе, гостиниц и производственных помещений в ${city.name}. Дезинфекция и дезинсекция для бизнеса с полным пакетом документов. Работаем в ${city.namePrepositional}. Выезд в день обращения.`;
+  } else if (slug === "unichtozhenie-zapahov") {
+    description = `Удаление неприятных запахов после пожара, затоплений, а также бытовых, промышленных и трупных запахов в ${city.name}. Современные технологии озонирования и нейтрализации. Работаем в ${city.namePrepositional}. Выезд в день обращения.`;
   } else if (slug === "prochie-uslugi") {
-    // Для "Прочие услуги" создаем description с городом
-    description = `Профессиональная дезинфекция автомобиля, обработка салона авто, акарицидная обработка дачного участка от клещей в ${city.name}. Обработка участка от клещей цена, дезинфекция авто цена. Гарантия результата, выезд в день обращения.`;
+    description = `Дезинфекция автомобиля и обработка дачного участка от клещей в ${city.name}. Акарицидная обработка территории, санитарная обработка автотранспорта. Работаем в ${city.namePrepositional} и области. Гарантия результата, выезд в день обращения.`;
   } else {
-    // Для остальных услуг просто добавляем город
-    description = `${service.meta.description} в ${city.name}. Выезд в день обращения.`;
+    // Fallback для новых услуг
+    description = service.meta.description.includes("в Москве и области")
+      ? `${service.meta.description.replace(
+          "в Москве и области",
+          `в ${city.name}`
+        )} Работаем в ${city.namePrepositional}. Выезд в день обращения.`
+      : `${service.meta.description} в ${city.name}. Работаем в ${city.namePrepositional}. Выезд в день обращения.`;
   }
 
   // Улучшенные keywords для страниц с городами
@@ -174,7 +184,9 @@ export default async function ServiceCityPage({ params }) {
 
         {/* Сколько это стоит */}
         <section className={styles.pricing}>
-          <h2>Сколько это стоит?</h2>
+          <h2>
+            Стоимость обработки {service.heroTitle} в {city.name}
+          </h2>
           <div className={styles.priceCards}>
             {service.pricing.map((item, index) => (
               <div key={index} className={styles.priceCard}>
@@ -213,8 +225,8 @@ export default async function ServiceCityPage({ params }) {
             <div className={styles.workText}>
               <p>
                 {service.workProcess.description} Работаем в {city.name} и
-                прилегающих районах Московской области. Выезд специалиста в
-                день обращения.
+                прилегающих районах Московской области. Выезд специалиста в день
+                обращения.
               </p>
             </div>
             <div className={styles.gallery}>
@@ -289,4 +301,3 @@ export default async function ServiceCityPage({ params }) {
     </main>
   );
 }
-
