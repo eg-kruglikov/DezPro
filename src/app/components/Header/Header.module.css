@@ -1,0 +1,39 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--background);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  display: block;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--foreground);
+  font-weight: 700;
+  padding: 10px 8px;
+  border-radius: 10px;
+}
+
+.nav a:hover {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+}

@@ -1,0 +1,98 @@
+.wrap {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.title {
+  font-size: 2rem;
+  margin: 0 0 1rem;
+  line-height: 1.25;
+}
+
+.text {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin: 0 0 1rem;
+}
+
+.text a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.text a:hover {
+  text-decoration: underline;
+}
+
+.subtitle {
+  font-size: 1.35rem;
+  margin: 1.75rem 0 0.75rem;
+  font-weight: 700;
+}
+
+.list {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  line-height: 1.85;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.card {
+  border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
+  border-radius: 12px;
+  padding: 14px;
+  background: var(--background);
+}
+
+.cardTitle {
+  font-size: 1.05rem;
+  margin: 0 0 6px;
+}
+
+.cardText {
+  margin: 0 0 10px;
+  color: color-mix(in srgb, var(--foreground) 75%, transparent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--button-bg);
+  color: var(--button-fg);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.btn:hover {
+  filter: brightness(0.95);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    padding: 24px 16px 40px;
+  }
+  .title {
+    font-size: 1.55rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
