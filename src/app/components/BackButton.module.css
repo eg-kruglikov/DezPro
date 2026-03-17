@@ -1,0 +1,35 @@
+.backButton {
+  display: inline-block;
+  padding: 10px 24px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.backButton:hover {
+  background: #f2cb05;
+  border-color: #f2cb05;
+  transform: translateY(-1px);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .backButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .backButton {
+    padding: 12px 28px;
+    font-size: 1rem;
+  }
+}
