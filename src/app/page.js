@@ -218,6 +218,12 @@ export default function HomePage() {
               </div>
             </div>
           </section>
+
+          <p className={styles.footerNote}>
+            <Link href="/spravochnik/">Тематический справочник</Link> — короткие
+            отдельные страницы по разделам, если удобнее читать не всю статью
+            целиком.
+          </p>
         </div>
       </div>
     </main>
