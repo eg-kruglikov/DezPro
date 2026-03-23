@@ -4,7 +4,7 @@ const diyArticles = [
   {
     slug: "dezinkseciya",
     title: "Можно ли сделать самому?",
-    serviceLink: "/services/dezinkseciya",
+    serviceLink: "/uslugi/dezinkseciya",
     sections: [
       {
         id: "kak-ne-pustit-nasekomyh-v-dom",
@@ -111,7 +111,7 @@ const diyArticles = [
   {
     slug: "dezinfekciya",
     title: "Как провести дезинфекцию помещения своими руками",
-    serviceLink: "/services/dezinfekciya",
+    serviceLink: "/uslugi/dezinfekciya",
     sections: [
       {
         id: "kogda-nuzhna-dezinfekciya",
@@ -168,7 +168,7 @@ const diyArticles = [
   {
     slug: "deratizaciya",
     title: "Как избавиться от крыс и мышей самому",
-    serviceLink: "/services/deratizaciya",
+    serviceLink: "/uslugi/deratizaciya",
     sections: [
       {
         id: "kak-ponyat-chto-zavelis-gryzuny",
@@ -271,7 +271,7 @@ const diyArticles = [
   {
     slug: "dlya-organizacij",
     title: "Как провести дезинфекцию и дезинсекцию в офисе своими силами",
-    serviceLink: "/services/dlya-organizacij",
+    serviceLink: "/uslugi/dlya-organizacij",
     sections: [
       {
         id: "pochemu-vazhna-regulyarnaya-obrabotka",
@@ -293,7 +293,7 @@ const diyArticles = [
   {
     slug: "unichtozhenie-zapahov",
     title: "Как убрать неприятный запах в квартире самому",
-    serviceLink: "/services/unichtozhenie-zapahov",
+    serviceLink: "/uslugi/unichtozhenie-zapahov",
     sections: [
       {
         id: "prichiny-zapaha",
@@ -320,7 +320,7 @@ const diyArticles = [
   {
     slug: "prochie-uslugi",
     title: "Как обработать участок и автомобиль своими руками",
-    serviceLink: "/services/prochie-uslugi",
+    serviceLink: "/uslugi/prochie-uslugi",
     sections: [
       {
         id: "obrabotka-avtomobilya",

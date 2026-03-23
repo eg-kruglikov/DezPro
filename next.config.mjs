@@ -21,20 +21,6 @@ const config = {
   env: {
     NEXT_PUBLIC_BASE_PATH: "",
   },
-  async redirects() {
-    return [
-      {
-        source: "/services",
-        destination: "/uslugi",
-        permanent: true,
-      },
-      {
-        source: "/services/:path*",
-        destination: "/uslugi/:path*",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 export default withPWA(config);

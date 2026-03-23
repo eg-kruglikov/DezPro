@@ -15,7 +15,7 @@ module.exports = {
       priority = 0.8;
     } else if (path === "/tseny" || path === "/moskovskaya-oblast") {
       priority = 0.8;
-    } else if (path.startsWith("/services")) {
+    } else if (path.startsWith("/uslugi")) {
       priority = 0.7;
     }
 
