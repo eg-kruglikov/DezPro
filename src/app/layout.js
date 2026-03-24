@@ -22,6 +22,9 @@ export const metadata = {
   alternates: {
     canonical: "https://dezpro.online/",
   },
+  verification: {
+    yandex: "0d0d70e2020418fa",
+  },
   robots: {
     index: true,
     follow: true,

@@ -20,6 +20,14 @@ const config = {
   env: {
     NEXT_PUBLIC_BASE_PATH: "",
   },
+  async headers() {
+    return [
+      {
+        source: "/yandex_0d0d70e2020418fa.html",
+        headers: [{ key: "Cache-Control", value: "no-store, max-age=0" }],
+      },
+    ];
+  },
   async redirects() {
     return [
       {
