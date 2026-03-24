@@ -9,9 +9,8 @@ const withPWA = createNextPWA({
 });
 
 const config = {
-  output: "export",
+  output: "standalone",
   images: {
-    unoptimized: true,
     formats: ["image/webp"],
     minimumCacheTTL: 31536000,
   },
@@ -20,6 +19,35 @@ const config = {
   trailingSlash: true,
   env: {
     NEXT_PUBLIC_BASE_PATH: "",
+  },
+  async redirects() {
+    return [
+      {
+        source: "/robots.txt/",
+        destination: "/robots.txt",
+        permanent: true,
+      },
+      {
+        source: "/sitemap.xml/",
+        destination: "/sitemap.xml",
+        permanent: true,
+      },
+      {
+        source: "/icon.png/",
+        destination: "/icon.png",
+        permanent: true,
+      },
+      {
+        source: "/apple-icon.png/",
+        destination: "/apple-icon.png",
+        permanent: true,
+      },
+      {
+        source: "/favicon.ico/",
+        destination: "/favicon.ico",
+        permanent: true,
+      },
+    ];
   },
 };
 
