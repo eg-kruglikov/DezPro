@@ -7,11 +7,8 @@ export default function sitemap() {
   const baseUrl = "https://dezpro.online";
   const now = new Date().toISOString();
 
-  // eslint-disable-next-line global-require
   const services = require("./data/services").default;
-  // eslint-disable-next-line global-require
   const cities = require("./data/cities").default;
-  // eslint-disable-next-line global-require
   const pestsByService = require("./data/pests").default;
 
   const urls = [

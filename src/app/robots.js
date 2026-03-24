@@ -11,4 +11,3 @@ export default function robots() {
     sitemap: "https://dezpro.online/sitemap.xml",
   };
 }
-

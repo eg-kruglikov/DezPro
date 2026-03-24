@@ -1,0 +1,5 @@
+# 301 trailing-slash variants of root files (crawlers + trailingSlash site quirk).
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^(robots\.txt|sitemap\.xml|icon\.png|apple-icon\.png|favicon\.ico)/$ /$1 [R=301,L]
+</IfModule>
