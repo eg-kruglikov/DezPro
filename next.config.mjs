@@ -47,6 +47,11 @@ const config = {
         destination: "/favicon.ico",
         permanent: true,
       },
+      {
+        source: "/yandex_0d0d70e2020418fa.html/",
+        destination: "/yandex_0d0d70e2020418fa.html",
+        permanent: true,
+      },
     ];
   },
 };
