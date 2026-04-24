@@ -10,7 +10,7 @@ const body = src.replace(/\s*export\s+default\s+diyArticles\s*;?\s*$/, "");
 const diyArticles = new Function(`${body}\nreturn diyArticles;`)();
 
 const TARGET_SLUGS = new Set([
-  "dezinkseciya",
+  "dezinsekciya",
   "dezinfekciya",
   "deratizaciya",
   "dlya-organizacij",

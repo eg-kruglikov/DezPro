@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
 
   // Уникальные заголовки для каждой статьи (оптимизированы для SEO)
   const titles = {
-    dezinkseciya:
+    dezinsekciya:
       "Дезинсекция своими руками: тараканы, клопы, муравьи, блохи, клещи, осы, комары | DezPro",
     dezinfekciya: "Как провести дезинфекцию помещения своими руками | DezPro",
     deratizaciya:
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
 
   // Уникальные описания для каждой статьи
   const descriptions = {
-    dezinkseciya:
+    dezinsekciya:
       "Пошаговые инструкции по уничтожению тараканов, клопов, муравьев, блох, клещей, ос, комаров, мух, моли, пауков, сколопендр и других насекомых своими руками. Эффективные методы, народные средства и меры безопасности от профессионалов DezPro.",
     dezinfekciya:
       "Как провести дезинфекцию помещения своими руками. Выбор средств, подготовка, техника безопасности. Когда нужна профессиональная помощь.",
@@ -89,7 +89,7 @@ export default async function DiyArticle({ params }) {
 
   // SEO-оптимизированные H1 заголовки
   const h1Titles = {
-    dezinkseciya:
+    dezinsekciya:
       "Дезинсекция своими руками: инструкции по уничтожению насекомых",
     dezinfekciya: "Дезинфекция помещения своими руками: пошаговая инструкция",
     deratizaciya: "Как избавиться от крыс и мышей самому: полное руководство по всем методам",
@@ -100,7 +100,7 @@ export default async function DiyArticle({ params }) {
 
   // Описания для страниц
   const descriptions = {
-    dezinkseciya:
+    dezinsekciya:
       "Пошаговые инструкции по уничтожению тараканов, клопов, муравьев, блох, клещей, ос, комаров, мух, моли, пауков, сколопендр и других насекомых своими руками. Эффективные методы, народные средства и меры безопасности от профессионалов DezPro.",
     dezinfekciya:
       "Как провести дезинфекцию помещения своими руками. Выбор средств, подготовка, техника безопасности. Когда нужна профессиональная помощь.",
@@ -202,7 +202,7 @@ export default async function DiyArticle({ params }) {
         <nav className={styles.navigation}>
           <h2 className={styles.navTitle}>Содержание</h2>
           <div className={styles.navLinks}>
-            {article.slug === "dezinkseciya" ? (
+            {article.slug === "dezinsekciya" ? (
               <>
                 <div className={styles.categoryGroup}>
                   <h3 className={styles.categoryTitle}>Квартира / дом:</h3>

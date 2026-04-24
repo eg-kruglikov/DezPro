@@ -3,7 +3,10 @@ import { notFound } from "next/navigation";
 import styles from "../../info-page.module.css";
 import services from "../../data/services";
 import pestsByService from "../../data/pests";
+import { getServiceExtras } from "../../data/serviceExtras";
+import { serviceHubCopy } from "../../data/serviceLandingCopy";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import FAQ from "../../components/FAQ/FAQ";
 
 export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -16,7 +19,7 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${service.name} в Москве и Московской области | DezPro`,
-    description: `${service.name} — ${service.short}. Работаем по Москве и Московской области.`,
+    description: `${service.name} — ${service.short}. Работаем по Москве и Московской области, договор и понятный регламент.`,
     alternates: { canonical: `https://dezpro.online/uslugi/${slug}/` },
   };
 }
@@ -27,6 +30,8 @@ export default async function UslugaPage({ params }) {
   if (!service) return notFound();
 
   const pests = pestsByService[slug] || [];
+  const extras = getServiceExtras(slug);
+  const hub = serviceHubCopy[slug];
 
   return (
     <main>
@@ -43,14 +48,49 @@ export default async function UslugaPage({ params }) {
         </h1>
         <p className={styles.text}>{service.short}.</p>
 
+        {hub && (
+          <>
+            {hub.intro.map((p, i) => (
+              <p key={`hub-${i}`} className={styles.text}>
+                {p}
+              </p>
+            ))}
+            {hub.bullets?.length > 0 && (
+              <>
+                <h2 className={styles.subtitle}>Почему обращаются к DezPro</h2>
+                <ul className={styles.list}>
+                  {hub.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {hub.faq?.length > 0 && <FAQ items={hub.faq} />}
+          </>
+        )}
+
+        {extras.length > 0 && (
+          <>
+            <h2 className={styles.subtitle}>Методы и спецпрограммы</h2>
+            <ul className={styles.list}>
+              {extras.map((e) => (
+                <li key={e.slug}>
+                  <Link href={`/uslugi/${slug}/${e.slug}/`}>{e.listLabel}</Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
         {pests.length > 0 && (
           <>
-            <h2 className={styles.subtitle}>Страницы по запросам</h2>
+            <h2 className={styles.subtitle}>По типу вредителя или задачи</h2>
             <ul className={styles.list}>
               {pests.map((p) => (
                 <li key={p.slug}>
-                  <Link href={`/uslugi/${slug}/${p.slug}`}>
-                    {service.name} {p.slug.startsWith("ot-") ? "от" : "для"}{" "}
+                  <Link href={`/uslugi/${slug}/${p.slug}/`}>
+                    {service.name}{" "}
+                    {p.slug.startsWith("ot-") ? "от " : "для "}
                     {p.name.toLowerCase()}
                   </Link>
                 </li>
@@ -59,12 +99,18 @@ export default async function UslugaPage({ params }) {
           </>
         )}
 
+        <h2 className={styles.subtitle}>География и цены</h2>
         <p className={styles.text}>
-          Также смотри: <Link href="/moskovskaya-oblast">города МО</Link>,{" "}
-          <Link href="/tseny">цены</Link>, <Link href="/contacts">контакты</Link>.
+          Отдельные страницы по городам Московской области — в разделе{" "}
+          <Link href="/moskovskaya-oblast/">Московская область</Link>. Ориентиры
+          по стоимости — на странице{" "}
+          <Link href="/tseny/">цены</Link>, заявка — через{" "}
+          <Link href="/contacts/">контакты</Link>. Полезные материалы — в{" "}
+          <Link href="/spravochnik/">справочнике</Link> и разделе{" "}
+          <Link href="/diy/dezinsekciya/">сделать самому</Link> (обзорно, без
+          замены профессиональной обработки).
         </p>
       </div>
     </main>
   );
 }
-

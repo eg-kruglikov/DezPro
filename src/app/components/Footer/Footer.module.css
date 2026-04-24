@@ -1,0 +1,71 @@
+.footer {
+  margin-top: 4rem;
+  padding: 2rem 1.25rem 2.5rem;
+  background: #0f1419;
+  color: #e8eaed;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr 1.2fr 1fr;
+    align-items: start;
+  }
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.legal {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.muted {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.55;
+}
+
+.text {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.92;
+}
+
+.links {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.links a {
+  color: #9ecbff;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}

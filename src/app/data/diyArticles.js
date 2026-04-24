@@ -2,9 +2,9 @@
 
 const diyArticles = [
   {
-    slug: "dezinkseciya",
+    slug: "dezinsekciya",
     title: "Можно ли сделать самому?",
-    serviceLink: "/uslugi/dezinkseciya",
+    serviceLink: "/uslugi/dezinsekciya/",
     sections: [
       {
         id: "kak-ne-pustit-nasekomyh-v-dom",

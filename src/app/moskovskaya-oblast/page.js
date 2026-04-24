@@ -32,8 +32,8 @@ export default function MoskovskayaOblastPage() {
           {cities.map((c) => (
             <li key={c.slug}>
               {c.name}:{" "}
-              <Link href={`/uslugi/dezinkseciya/${c.slug}`}>дезинсекция</Link>,{" "}
-              <Link href={`/uslugi/dezinfekciya/${c.slug}`}>дезинфекция</Link>,{" "}
+              <Link href={`/uslugi/dezinsekciya/${c.slug}/`}>дезинсекция</Link>,{" "}
+              <Link href={`/uslugi/dezinfekciya/${c.slug}/`}>дезинфекция</Link>,{" "}
               <Link href={`/uslugi/deratizaciya/${c.slug}`}>дератизация</Link>
             </li>
           ))}

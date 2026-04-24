@@ -31,6 +31,31 @@ const config = {
   async redirects() {
     return [
       {
+        source: "/uslugi/dezinkseciya",
+        destination: "/uslugi/dezinsekciya/",
+        permanent: true,
+      },
+      {
+        source: "/uslugi/dezinkseciya/",
+        destination: "/uslugi/dezinsekciya/",
+        permanent: true,
+      },
+      {
+        source: "/uslugi/dezinkseciya/:path*",
+        destination: "/uslugi/dezinsekciya/:path*",
+        permanent: true,
+      },
+      {
+        source: "/diy/dezinkseciya",
+        destination: "/diy/dezinsekciya/",
+        permanent: true,
+      },
+      {
+        source: "/diy/dezinkseciya/",
+        destination: "/diy/dezinsekciya/",
+        permanent: true,
+      },
+      {
         source: "/robots.txt/",
         destination: "/robots.txt",
         permanent: true,

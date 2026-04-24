@@ -1,6 +1,6 @@
 export const services = [
   {
-    slug: "dezinkseciya",
+    slug: "dezinsekciya",
     name: "Дезинсекция",
     short: "Уничтожение насекомых (клопы, тараканы, муравьи и др.)",
   },

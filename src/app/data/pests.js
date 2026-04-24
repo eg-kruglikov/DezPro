@@ -1,5 +1,5 @@
 export const pestsByService = {
-  dezinkseciya: [
+  dezinsekciya: [
     { slug: "ot-klopov", name: "Клопов" },
     { slug: "ot-tarakanov", name: "Тараканов" },
     { slug: "ot-muravev", name: "Муравьёв" },

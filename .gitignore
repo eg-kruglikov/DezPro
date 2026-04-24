@@ -42,3 +42,10 @@ next-env.d.ts
 
 # local project hub (notes, competitor data, outputs)
 /project-hub/
+
+# local SEO/competitor research artifacts (keep local)
+/scripts/out/
+/scripts/analyze_competitor_csv.py
+/IMAGE_PROMPTS_FULL_SITE.md
+/IMAGE_REQUIREMENTS.md
+/PROMPTS_FOR_IMAGES.md

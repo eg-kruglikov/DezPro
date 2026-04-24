@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./homepage.module.css";
 import services from "./data/services";
 import pestsByService from "./data/pests";
+import company from "./data/company";
 
 export default function HomePage() {
   return (
@@ -84,16 +85,17 @@ export default function HomePage() {
           <section className={styles.section}>
             <h2 className={styles.h2}>Популярные запросы</h2>
             <p className={styles.muted}>
-              Быстрые ссылки на страницы под интент. Дальше расширим контентом,
-              FAQ, ценами и кейсами.
+              Быстрые ссылки на страницы под запросы по Москве и области: клопы,
+              тараканы, муравьи и др. На каждой странице — методы, подготовка и
+              блок вопросов.
             </p>
 
             <div className={styles.linksGrid}>
-              {(pestsByService.dezinkseciya || []).slice(0, 10).map((p) => (
+              {(pestsByService.dezinsekciya || []).slice(0, 10).map((p) => (
                 <Link
                   key={p.slug}
                   className={styles.pill}
-                  href={`/uslugi/dezinkseciya/${p.slug}`}
+                  href={`/uslugi/dezinsekciya/${p.slug}/`}
                 >
                   {p.name}
                 </Link>
@@ -199,20 +201,22 @@ export default function HomePage() {
               />
               <div className={styles.box}>
                 <p className={styles.muted} style={{ marginBottom: 12 }}>
-                  Лицензия доступна для скачивания. Для организаций предоставляем
+                  <strong>{company.shortLegalName}</strong> работает по лицензии
+                  Роспотребнадзора № {company.license.number} (действующая, выписка от{" "}
+                  {company.license.issued}). ИНН {company.inn}. Для организаций —
                   договор и закрывающие документы.
                 </p>
                 <div className={styles.actions} style={{ marginTop: 0 }}>
                   <a
                     className={styles.btnPrimary}
-                    href="/docs/license.pdf"
+                    href={company.licensePdfPath}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     Скачать лицензию (PDF)
                   </a>
-                  <Link className={styles.btnGhost} href="/sertifikaty">
-                    Документы
+                  <Link className={styles.btnGhost} href="/sertifikaty/">
+                    Выписка и реквизиты
                   </Link>
                 </div>
               </div>
