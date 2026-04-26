@@ -7,6 +7,23 @@ import { getServiceExtras } from "../../data/serviceExtras";
 import { serviceHubCopy } from "../../data/serviceLandingCopy";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import FAQ from "../../components/FAQ/FAQ";
+import StructuredData from "../../components/StructuredData";
+import {
+  serviceJsonLd,
+  offerJsonLd,
+  breadcrumbJsonLd,
+} from "../../lib/jsonld";
+
+const SITE = "https://dezpro.online";
+
+const SERVICE_PRICE_HINTS = {
+  dezinsekciya: { lowPrice: 2500, highPrice: 9000 },
+  dezinfekciya: { lowPrice: 2000, highPrice: 8000 },
+  deratizaciya: { lowPrice: 3000, highPrice: 9000 },
+  "unichtozhenie-zapahov": { lowPrice: 3500, highPrice: 12000 },
+  "dlya-organizacij": { lowPrice: 5000, highPrice: 30000 },
+  "prochie-uslugi": { lowPrice: 2500, highPrice: 8000 },
+};
 
 export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -18,7 +35,7 @@ export async function generateMetadata({ params }) {
   if (!service) return {};
 
   return {
-    title: `${service.name} в Москве и Московской области | DezPro`,
+    title: `${service.name} в Москве и Московской области`,
     description: `${service.name} — ${service.short}. Работаем по Москве и Московской области, договор и понятный регламент.`,
     alternates: { canonical: `https://dezpro.online/uslugi/${slug}/` },
   };
@@ -33,8 +50,30 @@ export default async function UslugaPage({ params }) {
   const extras = getServiceExtras(slug);
   const hub = serviceHubCopy[slug];
 
+  const url = `${SITE}/uslugi/${slug}/`;
+  const priceHint = SERVICE_PRICE_HINTS[slug];
+  const serviceLd = serviceJsonLd({
+    name: `${service.name} в Москве и Московской области`,
+    description: `${service.name} — ${service.short}. Работаем по Москве и Московской области, договор и понятный регламент.`,
+    url,
+    offers: priceHint
+      ? offerJsonLd({
+          name: `${service.name} — ориентир по цене`,
+          url,
+          lowPrice: priceHint.lowPrice,
+          highPrice: priceHint.highPrice,
+        })
+      : undefined,
+  });
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: "Главная", url: `${SITE}/` },
+    { name: "Услуги", url: `${SITE}/uslugi/` },
+    { name: service.name, url },
+  ]);
+
   return (
     <main>
+      <StructuredData data={[serviceLd, breadcrumbLd]} />
       <div className={styles.wrap}>
         <Breadcrumbs
           items={[

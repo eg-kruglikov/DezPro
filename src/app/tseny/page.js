@@ -2,13 +2,54 @@ import Link from "next/link";
 import styles from "../info-page.module.css";
 import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 import FAQ from "../components/FAQ/FAQ";
+import StructuredData from "../components/StructuredData";
+import {
+  serviceJsonLd,
+  offerJsonLd,
+  breadcrumbJsonLd,
+} from "../lib/jsonld";
 
 export const metadata = {
-  title: "Цены на дезинсекцию, дезинфекцию и дератизацию | DezPro — Москва и МО",
+  title: "Цены на дезинсекцию, дезинфекцию и дератизацию — Москва и МО",
   description:
     "Ориентиры по стоимости дезинсекции, дезинфекции и дератизации в Москве и Московской области. От чего зависит цена, выезд в день обращения.",
   alternates: { canonical: "https://dezpro.online/tseny/" },
 };
+
+const PRICE_SERVICES = [
+  {
+    name: "Дезинсекция (квартира)",
+    slug: "dezinsekciya",
+    lowPrice: 2500,
+    highPrice: 9000,
+    description:
+      "Уничтожение клопов, тараканов, муравьёв и других насекомых в квартире. Гель, барьерная и/или туманная обработка.",
+  },
+  {
+    name: "Дезинфекция",
+    slug: "dezinfekciya",
+    lowPrice: 2000,
+    highPrice: 8000,
+    description:
+      "Обработка от вирусов, бактерий и плесени. Профилактика, локальная задача или подготовка под ремонт.",
+  },
+  {
+    name: "Дератизация",
+    slug: "deratizaciya",
+    lowPrice: 3000,
+    highPrice: 9000,
+    description:
+      "Уничтожение крыс, мышей и полёвок в квартирах, частных домах и на участках, а также с приманочными станциями для юрлиц.",
+  },
+  {
+    name: "Уничтожение запахов и озонирование",
+    slug: "unichtozhenie-zapahov",
+    lowPrice: 3500,
+    highPrice: 12000,
+    description:
+      "Озонирование и нейтрализация запахов: гари, сырости, никотина, биологического происхождения.",
+  },
+];
 
 const priceFaq = [
   {
@@ -34,8 +75,28 @@ const priceFaq = [
 ];
 
 export default function PricesPage() {
+  const SITE = "https://dezpro.online";
+  const serviceLds = PRICE_SERVICES.map((s) =>
+    serviceJsonLd({
+      name: s.name,
+      description: s.description,
+      url: `${SITE}/uslugi/${s.slug}/`,
+      offers: offerJsonLd({
+        name: s.name,
+        url: `${SITE}/uslugi/${s.slug}/`,
+        lowPrice: s.lowPrice,
+        highPrice: s.highPrice,
+      }),
+    }),
+  );
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: "Главная", url: `${SITE}/` },
+    { name: "Цены", url: `${SITE}/tseny/` },
+  ]);
+
   return (
     <main>
+      <StructuredData data={[...serviceLds, breadcrumbLd]} />
       <div className={styles.wrap}>
         <Breadcrumbs
           items={[

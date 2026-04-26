@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import diyArticles from "@/app/data/diyArticles";
 import DiySectionText from "@/app/components/DiySectionText";
+import StructuredData from "@/app/components/StructuredData";
+import { articleJsonLd, breadcrumbJsonLd } from "@/app/lib/jsonld";
 import {
   findDiySectionPage,
   getFilledDiySectionPages,
@@ -21,10 +23,10 @@ export async function generateMetadata({ params }) {
   const { articleSlug, sectionId } = await params;
   const found = findDiySectionPage(diyArticles, articleSlug, sectionId);
   if (!found) {
-    return { title: "Материал не найден | DezPro" };
+    return { title: "Материал не найден" };
   }
   const { article, section } = found;
-  const title = `${section.heading} | ${article.title} | DezPro`;
+  const title = `${section.heading} | ${article.title}`;
   const description = `${section.heading}. Материал из справочника DezPro: ${article.title.toLowerCase()}.`;
   const url = `https://dezpro.online/spravochnik/${articleSlug}/${sectionId}/`;
   return {
@@ -49,8 +51,25 @@ export default async function SpravochnikSectionPage({ params }) {
 
   const { article, section } = found;
 
+  const SITE = "https://dezpro.online";
+  const url = `${SITE}/spravochnik/${articleSlug}/${sectionId}/`;
+  const articleLd = articleJsonLd({
+    headline: section.heading,
+    description: `${section.heading}. Материал из справочника DezPro: ${article.title.toLowerCase()}.`,
+    url,
+    imageUrl: section.img ? `${SITE}${section.img}` : undefined,
+    type: "Article",
+  });
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: "Главная", url: `${SITE}/` },
+    { name: "Справочник", url: `${SITE}/spravochnik/` },
+    { name: article.title, url: `${SITE}/diy/${article.slug}/` },
+    { name: section.heading, url },
+  ]);
+
   return (
     <main className={diyStyles.articlePage}>
+      <StructuredData data={[articleLd, breadcrumbLd]} />
       <div className={diyStyles.container}>
         <div className={styles.backRow}>
           <Link className={styles.backLink} href="/spravochnik/">

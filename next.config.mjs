@@ -11,6 +11,7 @@ const withPWA = createNextPWA({
 const config = {
   output: "standalone",
   images: {
+    unoptimized: true,
     formats: ["image/webp"],
     minimumCacheTTL: 31536000,
   },

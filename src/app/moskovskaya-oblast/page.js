@@ -5,7 +5,7 @@ import services from "../data/services";
 import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 
 export const metadata = {
-  title: "Московская область — города | DezPro",
+  title: "Московская область — города",
   description:
     "Города Московской области: отдельные SEO-страницы по услугам и выезду.",
   alternates: { canonical: "https://dezpro.online/moskovskaya-oblast/" },
@@ -29,14 +29,16 @@ export default function MoskovskayaOblastPage() {
 
         <h2 className={styles.subtitle}>Города</h2>
         <ul className={styles.list}>
-          {cities.map((c) => (
-            <li key={c.slug}>
-              {c.name}:{" "}
-              <Link href={`/uslugi/dezinsekciya/${c.slug}/`}>дезинсекция</Link>,{" "}
-              <Link href={`/uslugi/dezinfekciya/${c.slug}/`}>дезинфекция</Link>,{" "}
-              <Link href={`/uslugi/deratizaciya/${c.slug}`}>дератизация</Link>
-            </li>
-          ))}
+          {cities
+            .filter((c) => !c.isMoscow)
+            .map((c) => (
+              <li key={c.slug}>
+                {c.name}:{" "}
+                <Link href={`/uslugi/dezinsekciya/${c.slug}/`}>дезинсекция</Link>,{" "}
+                <Link href={`/uslugi/dezinfekciya/${c.slug}/`}>дезинфекция</Link>,{" "}
+                <Link href={`/uslugi/deratizaciya/${c.slug}/`}>дератизация</Link>
+              </li>
+            ))}
         </ul>
 
         <h2 className={styles.subtitle}>Услуги</h2>

@@ -4,6 +4,8 @@ import Image from "next/image";
 import diyArticles from "@/app/data/diyArticles";
 import Link from "next/link";
 import FAQ from "@/app/components/FAQ/FAQ";
+import StructuredData from "@/app/components/StructuredData";
+import { articleJsonLd, breadcrumbJsonLd } from "@/app/lib/jsonld";
 import styles from "./page.module.css";
 
 export async function generateStaticParams() {
@@ -18,25 +20,24 @@ export async function generateMetadata({ params }) {
 
   if (!article) {
     return {
-      title: "Статья не найдена | DezPro",
+      title: "Статья не найдена",
       description: "Запрашиваемая статья не найдена",
     };
   }
 
   const url = `https://dezpro.online/diy/${slug}/`;
 
-  // Уникальные заголовки для каждой статьи (оптимизированы для SEO)
   const titles = {
     dezinsekciya:
-      "Дезинсекция своими руками: тараканы, клопы, муравьи, блохи, клещи, осы, комары | DezPro",
-    dezinfekciya: "Как провести дезинфекцию помещения своими руками | DezPro",
+      "Дезинсекция своими руками: тараканы, клопы, муравьи, блохи, клещи, осы, комары",
+    dezinfekciya: "Как провести дезинфекцию помещения своими руками",
     deratizaciya:
-      "Как избавиться от крыс и мышей самому: все методы борьбы с грызунами | DezPro",
+      "Как избавиться от крыс и мышей самому: все методы борьбы с грызунами",
     "dlya-organizacij":
-      "Дезинфекция и дезинсекция в офисе своими силами | DezPro",
+      "Дезинфекция и дезинсекция в офисе своими силами",
     "unichtozhenie-zapahov":
-      "Как убрать неприятный запах в квартире самому | DezPro",
-    "prochie-uslugi": "Обработка автомобиля и участка своими руками | DezPro",
+      "Как убрать неприятный запах в квартире самому",
+    "prochie-uslugi": "Обработка автомобиля и участка своими руками",
   };
 
   // Уникальные описания для каждой статьи
@@ -55,8 +56,7 @@ export async function generateMetadata({ params }) {
       "Обработка автомобиля и дачного участка своими руками. Дезинфекция авто, акарицидная обработка от клещей. Ограничения домашних методов.",
   };
 
-  const title =
-    titles[slug] || `${article.title} | DezPro — дезинфекция в Москве`;
+  const title = titles[slug] || `${article.title} — дезинфекция в Москве`;
   const description =
     descriptions[slug] ||
     `Узнайте, как провести ${article.title.toLowerCase()} своими руками. Полезные советы и инструкции от профессионалов DezPro.`;
@@ -193,8 +193,23 @@ export default async function DiyArticle({ params }) {
            !s.heading.toLowerCase().includes("faq")
   );
 
+  const SITE = "https://dezpro.online";
+  const articleUrl = `${SITE}/diy/${slug}/`;
+  const articleLd = articleJsonLd({
+    headline: h1Title,
+    description: pageDescription,
+    url: articleUrl,
+    type: "Article",
+  });
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: "Главная", url: `${SITE}/` },
+    { name: "Сделать самому", url: `${SITE}/diy/` },
+    { name: article.title, url: articleUrl },
+  ]);
+
   return (
     <main className={styles.articlePage}>
+      <StructuredData data={[articleLd, breadcrumbLd]} />
       <div className={styles.container}>
         <h1 className={styles.title}>{h1Title}</h1>
         <p className={styles.description}>{pageDescription}</p>

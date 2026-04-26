@@ -12,6 +12,41 @@ import {
 } from "../../../data/serviceLandingCopy";
 import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs";
 import FAQ from "../../../components/FAQ/FAQ";
+import StructuredData from "../../../components/StructuredData";
+import {
+  serviceJsonLd,
+  offerJsonLd,
+  breadcrumbJsonLd,
+} from "../../../lib/jsonld";
+
+const SITE = "https://dezpro.online";
+
+const SERVICE_PRICE_HINTS = {
+  dezinsekciya: { lowPrice: 2500, highPrice: 9000 },
+  dezinfekciya: { lowPrice: 2000, highPrice: 8000 },
+  deratizaciya: { lowPrice: 3000, highPrice: 9000 },
+  "unichtozhenie-zapahov": { lowPrice: 3500, highPrice: 12000 },
+  "dlya-organizacij": { lowPrice: 5000, highPrice: 30000 },
+  "prochie-uslugi": { lowPrice: 2500, highPrice: 8000 },
+};
+
+/**
+ * Информационные статьи под каждый pest-слаг — для контекстной перелинковки
+ * с посадочной "от вредителя" в раздел /info/.
+ */
+const PEST_INFO_LINKS = {
+  "ot-klopov": [
+    { label: "Укусы клопов на коже: как выглядят и что делать", href: "/info/ukusy-klopov-na-kozhe/" },
+    { label: "Как выглядят постельные клопы", href: "/info/kak-vyglyadyat-klopy/" },
+    { label: "Признаки клопов в квартире", href: "/info/priznaki-klopov-v-kvartire/" },
+    { label: "Сколько живут клопы", href: "/info/skolko-zhivut-klopy/" },
+    { label: "При какой температуре погибают клопы", href: "/info/pri-kakoj-temperature-pogibajut-klopy/" },
+  ],
+  "ot-tarakanov": [
+    { label: "Как избавиться от тараканов в квартире", href: "/info/kak-izbavitsya-ot-tarakanov-v-kvartire/" },
+    { label: "Эффективные средства от тараканов", href: "/info/sredstva-ot-tarakanov/" },
+  ],
+};
 
 function getCity(param) {
   return cities.find((c) => c.slug === param) || null;
@@ -55,7 +90,9 @@ export async function generateMetadata({ params }) {
 
   if (city) {
     const bundle = getCityLandingBundle(service, city);
-    const title = `${service.name} в ${city.name} (МО) | DezPro`;
+    const title = city.isMoscow
+      ? `${service.name} в Москве`
+      : `${service.name} в ${city.name} (МО)`;
     return {
       title,
       description: bundle.metaDescription,
@@ -65,7 +102,7 @@ export async function generateMetadata({ params }) {
 
   if (extra) {
     const bundle = getMethodLandingBundle(slug, extra.slug);
-    const title = `${extra.listLabel} — Москва и МО | DezPro`;
+    const title = `${extra.listLabel} — Москва и МО`;
     const description =
       bundle?.metaDescription ||
       `${extra.listLabel}. ${service.short} Москва и Московская область.`;
@@ -73,7 +110,7 @@ export async function generateMetadata({ params }) {
   }
 
   const bundle = resolvePestLanding(service, pest);
-  const title = `${service.name} ${pest.slug.startsWith("ot-") ? "от" : ""} ${pest.name.toLowerCase()} — Москва и МО | DezPro`;
+  const title = `${service.name} ${pest.slug.startsWith("ot-") ? "от" : ""} ${pest.name.toLowerCase()} — Москва и МО`;
   return {
     title,
     description: bundle.metaDescription,
@@ -145,8 +182,53 @@ export default async function UslugaParamPage({ params }) {
 
   const extras = getServiceExtras(slug);
 
+  const url = `${SITE}/uslugi/${slug}/${param}/`;
+  const priceHint = SERVICE_PRICE_HINTS[slug];
+  let h1ForSchema;
+  let descForSchema;
+  let areaForSchema;
+
+  if (city) {
+    h1ForSchema = city.isMoscow
+      ? `${service.name} в Москве`
+      : `${service.name} в ${city.name} (Московская область)`;
+    descForSchema = getCityLandingBundle(service, city).metaDescription;
+    areaForSchema = [{ "@type": "City", name: city.name }];
+  } else if (extra) {
+    const bundle = getMethodLandingBundle(slug, extra.slug);
+    h1ForSchema = `${extra.listLabel} в Москве и Московской области`;
+    descForSchema =
+      bundle?.metaDescription ||
+      `${extra.listLabel}. ${service.short}. Москва и Московская область.`;
+  } else {
+    h1ForSchema = `${service.name} ${pest.slug.startsWith("ot-") ? "от" : ""} ${pest.name.toLowerCase()} — Москва и МО`;
+    descForSchema = resolvePestLanding(service, pest).metaDescription;
+  }
+
+  const serviceLd = serviceJsonLd({
+    name: h1ForSchema,
+    description: descForSchema,
+    url,
+    areaServed: areaForSchema,
+    offers: priceHint
+      ? offerJsonLd({
+          name: h1ForSchema,
+          url,
+          lowPrice: priceHint.lowPrice,
+          highPrice: priceHint.highPrice,
+        })
+      : undefined,
+  });
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: "Главная", url: `${SITE}/` },
+    { name: "Услуги", url: `${SITE}/uslugi/` },
+    { name: service.name, url: `${SITE}/uslugi/${slug}/` },
+    { name: crumbLabel, url },
+  ]);
+
   return (
     <main>
+      <StructuredData data={[serviceLd, breadcrumbLd]} />
       <div className={styles.wrap}>
         <Breadcrumbs
           items={[
@@ -160,7 +242,9 @@ export default async function UslugaParamPage({ params }) {
         {city && (
           <>
             <h1 className={styles.title}>
-              {service.name} в {city.name} (Московская область)
+              {city.isMoscow
+                ? `${service.name} в Москве`
+                : `${service.name} в ${city.name} (Московская область)`}
             </h1>
             <LandingBody bundle={getCityLandingBundle(service, city)} />
             <h2 className={styles.subtitle}>Рядом по услуге</h2>
@@ -192,6 +276,18 @@ export default async function UslugaParamPage({ params }) {
               {pest.name.toLowerCase()} в Москве и Московской области
             </h1>
             <LandingBody bundle={resolvePestLanding(service, pest)} />
+            {PEST_INFO_LINKS[pest.slug]?.length > 0 && (
+              <>
+                <h2 className={styles.subtitle}>Полезное по теме</h2>
+                <ul className={styles.list}>
+                  {PEST_INFO_LINKS[pest.slug].map((l) => (
+                    <li key={l.href}>
+                      <Link href={l.href}>{l.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
             <RelatedPestsFixed service={service} currentSlug={pest.slug} />
             {extras.length > 0 && (
               <>

@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import YandexMetrika from "./components/YandexMetrika";
 import StructuredData from "./components/StructuredData";
 import company from "./data/company";
+import { localBusinessJsonLd } from "./lib/jsonld";
 
 const anton = Anton({
   weight: "400",
@@ -13,21 +14,58 @@ const anton = Anton({
   variable: "--font-anton",
 });
 
+const SITE_URL = "https://dezpro.online";
+const DEFAULT_TITLE =
+  "DezPro — дезинсекция, дезинфекция, дератизация | Москва и МО";
+const DEFAULT_DESCRIPTION =
+  "ООО «ДЕЗ ПРО» (DezPro): лицензированная дезинсекция, дезинфекция и дератизация по Москве и Московской области. ИНН 0800024233.";
+
 export const metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "DezPro — дезинсекция, дезинфекция, дератизация | Москва и МО",
+    default: DEFAULT_TITLE,
     template: "%s | DezPro",
   },
-  description:
-    "ООО «ДЕЗ ПРО» (DezPro): лицензированная дезинсекция, дезинфекция и дератизация по Москве и Московской области. ИНН 0800024233.",
+  description: DEFAULT_DESCRIPTION,
+  applicationName: "DezPro",
+  authors: [{ name: company.shortLegalName, url: SITE_URL }],
+  keywords: [
+    "дезинсекция",
+    "дезинфекция",
+    "дератизация",
+    "Москва",
+    "Московская область",
+    "лицензия Роспотребнадзора",
+    "DezPro",
+  ],
   icons: {
-    icon: [
-      { url: "/icon.png", sizes: "any", type: "image/png" },
-    ],
+    icon: [{ url: "/icon.png", sizes: "any", type: "image/png" }],
     apple: "/apple-icon.png",
   },
   alternates: {
-    canonical: "https://dezpro.online/",
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    url: SITE_URL,
+    siteName: "DezPro",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [
+      {
+        url: "/hero.webp",
+        width: 1200,
+        height: 630,
+        alt: "DezPro — Дезинсекция, дезинфекция, дератизация",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: ["/hero.webp"],
   },
   robots: {
     index: true,
@@ -45,6 +83,7 @@ export const metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
   name: company.shortLegalName,
   legalName: company.fullLegalName,
   url: company.site,
@@ -61,11 +100,21 @@ const organizationJsonLd = {
     addressCountry: "RU",
     addressRegion: "Московская область",
     addressLocality: "Ивантеевка",
-    streetAddress:
-      "Центральный проезд, д. 27, корп. 3, пом. 1.02",
+    streetAddress: "Центральный проезд, д. 27, корп. 3, пом. 1.02",
     postalCode: "141282",
   },
   telephone: company.phoneTel,
+  logo: `${SITE_URL}/logo.png`,
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: company.brand,
+  inLanguage: "ru-RU",
+  publisher: { "@id": `${SITE_URL}/#organization` },
 };
 
 export default function RootLayout({ children }) {
@@ -74,7 +123,9 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="yandex-verification" content="0d0d70e2020418fa" />
         <link rel="icon" type="image/png" sizes="any" href="/icon.png" />
-        <StructuredData data={organizationJsonLd} />
+        <StructuredData
+          data={[organizationJsonLd, websiteJsonLd, localBusinessJsonLd()]}
+        />
       </head>
       <body>
         <Header />

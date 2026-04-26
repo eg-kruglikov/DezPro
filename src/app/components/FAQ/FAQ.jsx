@@ -3,6 +3,21 @@
 import { useState } from "react";
 import styles from "./FAQ.module.css";
 
+function buildFaqJsonLd(items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((it) => ({
+      "@type": "Question",
+      name: it.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: typeof it.answer === "string" ? it.answer : "",
+      },
+    })),
+  };
+}
+
 export default function FAQ({ items }) {
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -16,6 +31,12 @@ export default function FAQ({ items }) {
 
   return (
     <section id="faq-section" className={styles.faqSection}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqJsonLd(items)),
+        }}
+      />
       <div className={styles.faqContainer}>
         <h2 className={styles.faqTitle}>Часто задаваемые вопросы</h2>
         <div className={styles.faqList}>

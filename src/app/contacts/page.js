@@ -3,7 +3,7 @@ import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 import company from "../data/company";
 
 export const metadata = {
-  title: "Контакты | DezPro — Москва и МО",
+  title: "Контакты — Москва и МО",
   description:
     "ООО «ДЕЗ ПРО» (DezPro): контакты, адрес в Ивантеевке, ИНН 0800024233. Дезинсекция, дезинфекция и дератизация по Москве и Московской области.",
   alternates: { canonical: "https://dezpro.online/contacts/" },

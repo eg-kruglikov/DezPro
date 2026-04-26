@@ -4,6 +4,7 @@ import styles from "./homepage.module.css";
 import services from "./data/services";
 import pestsByService from "./data/pests";
 import company from "./data/company";
+import infoArticles from "./data/infoArticles";
 
 export default function HomePage() {
   return (
@@ -108,12 +109,22 @@ export default function HomePage() {
             <div className={styles.split}>
               <div className={styles.box}>
                 <p className={styles.muted} style={{ marginBottom: 10 }}>
-                  Москва — по умолчанию, для Московской области есть отдельные
-                  страницы по городам, чтобы покрывать запросы «в [город]».
+                  В Москве работаем по всем округам — выезд в день обращения,
+                  отдельные посадочные под услуги. Для Московской области
+                  собрали страницы по городам, чтобы покрывать запросы «в
+                  [город]».
                 </p>
-                <Link className={styles.btnPrimary} href="/moskovskaya-oblast">
-                  Города Московской области
-                </Link>
+                <div className={styles.actions} style={{ marginTop: 0 }}>
+                  <Link
+                    className={styles.btnPrimary}
+                    href="/uslugi/dezinsekciya/moskva/"
+                  >
+                    Дезинсекция в Москве
+                  </Link>
+                  <Link className={styles.btnGhost} href="/moskovskaya-oblast">
+                    Города Московской области
+                  </Link>
+                </div>
               </div>
 
               <div className={styles.box}>
@@ -160,6 +171,38 @@ export default function HomePage() {
                   </a>
                 </div>
               </div>
+            </div>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.h2}>Полезное о вредителях</h2>
+            <p className={styles.muted} style={{ marginBottom: 16 }}>
+              Развёрнутые материалы по самым частым вопросам: как выглядят
+              клопы, при какой температуре погибают, как избавиться от
+              тараканов, признаки заражения и сравнение средств.
+            </p>
+            <div className={styles.split}>
+              {infoArticles.slice(0, 4).map((a) => (
+                <div key={a.slug} className={styles.box}>
+                  <p className={styles.trustTitle} style={{ margin: 0 }}>
+                    <Link href={`/info/${a.slug}/`}>{a.title}</Link>
+                  </p>
+                  <p
+                    className={styles.trustText}
+                    style={{ marginTop: 6 }}
+                  >
+                    {a.metaDescription}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className={styles.actions} style={{ marginTop: 16 }}>
+              <Link className={styles.btnGhost} href="/info/">
+                Все материалы
+              </Link>
+              <Link className={styles.btnGhost} href="/spravochnik/">
+                Справочник своими руками
+              </Link>
             </div>
           </section>
 

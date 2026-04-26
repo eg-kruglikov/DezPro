@@ -1,4 +1,5 @@
 export const cities = [
+  { slug: "moskva", name: "Москва", prep: "Москве", isMoscow: true },
   { slug: "balashikha", name: "Балашиха", prep: "Балашихе" },
   { slug: "himki", name: "Химки", prep: "Химках" },
   { slug: "podolsk", name: "Подольск", prep: "Подольске" },

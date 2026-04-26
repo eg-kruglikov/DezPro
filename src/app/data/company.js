@@ -18,6 +18,31 @@ export const company = {
   phoneDisplay: "+7 (996) 996-09-82",
   phoneTel: "+79969960982",
   site: "https://dezpro.online",
+  /** Часы работы — приём заявок 24/7, выезд по согласованию */
+  openingHoursDisplay: "Ежедневно, заявки 24/7",
+  openingHoursSpec: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "00:00",
+      closes: "23:59",
+    },
+  ],
+  /** Гео-координаты Ивантеевки (точка офиса) — приближённо */
+  geo: { latitude: 55.978, longitude: 37.929 },
+  /** Регионы обслуживания */
+  areaServed: [
+    { "@type": "City", name: "Москва" },
+    { "@type": "AdministrativeArea", name: "Московская область" },
+  ],
   license: {
     status: "действующая",
     number: "08.08.05.003.Л.000001.01.25",

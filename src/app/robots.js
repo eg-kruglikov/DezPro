@@ -6,8 +6,10 @@ export default function robots() {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/api/", "/_next/", "/private/"],
       },
     ],
     sitemap: "https://dezpro.online/sitemap.xml",
+    host: "dezpro.online",
   };
 }

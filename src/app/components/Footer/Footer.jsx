@@ -16,6 +16,10 @@ export default function Footer() {
         <div className={styles.col}>
           <p className={styles.label}>Место деятельности</p>
           <p className={styles.text}>{company.addressActual}</p>
+          <p className={styles.label} style={{ marginTop: "0.75rem" }}>
+            Режим работы
+          </p>
+          <p className={styles.text}>{company.openingHoursDisplay}</p>
         </div>
         <div className={styles.col}>
           <p className={styles.label}>Документы</p>
@@ -23,7 +27,21 @@ export default function Footer() {
             <Link href="/sertifikaty/">Лицензия и выписка</Link>
             {" · "}
             <Link href="/contacts/">Контакты</Link>
+          </p>
+          <p className={styles.label} style={{ marginTop: "0.75rem" }}>
+            Полезное
+          </p>
+          <p className={styles.links}>
+            <Link href="/info/">Информация</Link>
             {" · "}
+            <Link href="/spravochnik/">Справочник</Link>
+            {" · "}
+            <Link href="/tseny/">Цены</Link>
+          </p>
+          <p className={styles.label} style={{ marginTop: "0.75rem" }}>
+            Связаться
+          </p>
+          <p className={styles.links}>
             <a href={`tel:${company.phoneTel}`}>{company.phoneDisplay}</a>
           </p>
         </div>

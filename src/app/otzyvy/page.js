@@ -3,7 +3,7 @@ import styles from "../info-page.module.css";
 import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 
 export const metadata = {
-  title: "Отзывы клиентов | DezPro — Москва и МО",
+  title: "Отзывы клиентов — Москва и МО",
   description:
     "Отзывы о дезинсекции и дезинфекции DezPro в Москве и Московской области. Реальные примеры задач и результатов.",
   alternates: { canonical: "https://dezpro.online/otzyvy/" },
