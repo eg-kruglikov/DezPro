@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
+    "types": [],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
   "typeAcquisition": {
-    "exclude": ["minimatch"]
+    "enable": false
   }
 }
