@@ -1,11 +1,49 @@
 // next.config.mjs
+import { createRequire } from "module";
 import createNextPWA from "next-pwa";
+
+const require = createRequire(import.meta.url);
+/** Базовые правила Workbox из next-pwa (шрифты, картинки, общий NetworkFirst и т.д.) */
+const nextPwaDefaultRuntimeCaching = require("next-pwa/cache.js");
+
+/**
+ * Чанки Next.js нельзя долго отдавать из StaleWhileRevalidate: после деплоя
+ * старый JS + новый сервер дают "Failed to find Server Action".
+ * Первое совпадение в runtimeCaching побеждает — эти правила идут перед дефолтными.
+ */
+const nextJsRuntimeCachingFirst = [
+  {
+    urlPattern: /\/_next\/static\/.*/i,
+    handler: "NetworkFirst",
+    options: {
+      cacheName: "next-static",
+      networkTimeoutSeconds: 5,
+      expiration: {
+        maxEntries: 128,
+        maxAgeSeconds: 60 * 60,
+      },
+    },
+  },
+  {
+    urlPattern: /\/_next\/data\/.*/i,
+    handler: "NetworkFirst",
+    options: {
+      cacheName: "next-data-network-first",
+      networkTimeoutSeconds: 5,
+      expiration: {
+        maxEntries: 64,
+        maxAgeSeconds: 60 * 60,
+      },
+    },
+  },
+];
 
 const withPWA = createNextPWA({
   dest: "public",
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === "development",
+  runtimeCaching: [...nextJsRuntimeCachingFirst, ...nextPwaDefaultRuntimeCaching],
 });
 
 const config = {
