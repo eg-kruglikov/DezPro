@@ -87,7 +87,7 @@ export default async function DiyArticle({ params }) {
     return notFound();
   }
 
-  // SEO-оптимизированные H1 заголовки
+  // Заголовки H1 для разделов «своими руками»
   const h1Titles = {
     dezinsekciya:
       "Дезинсекция своими руками: инструкции по уничтожению насекомых",

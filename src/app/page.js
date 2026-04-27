@@ -53,9 +53,10 @@ export default function HomePage() {
                 </p>
               </div>
               <div className={styles.trustItem}>
-                <p className={styles.trustTitle}>Под SEO-структуру</p>
+                <p className={styles.trustTitle}>Удобная навигация</p>
                 <p className={styles.trustText}>
-                  Отдельные страницы под услугу, города МО и «от вредителя».
+                  Отдельные страницы по услугам, городам области и типичным
+                  задачам — без лишней воды, с нужными деталями.
                 </p>
               </div>
             </div>
@@ -64,8 +65,9 @@ export default function HomePage() {
           <section className={styles.section}>
             <h2 className={styles.h2}>Услуги</h2>
             <p className={styles.muted}>
-              Каталог построен по структуре конкурентов: сервис → запрос «от…» →
-              город Московской области.
+              Дезинсекция, дезинфекция и остальные работы — у каждого направления
+              свои страницы. Можно перейти сразу к вашей задаче (например, от
+              клопов) или открыть раздел для города в Московской области.
             </p>
 
             <div className={styles.cards}>
@@ -86,9 +88,9 @@ export default function HomePage() {
           <section className={styles.section}>
             <h2 className={styles.h2}>Популярные запросы</h2>
             <p className={styles.muted}>
-              Быстрые ссылки на страницы под запросы по Москве и области: клопы,
-              тараканы, муравьи и др. На каждой странице — методы, подготовка и
-              блок вопросов.
+              Частые темы по Москве и области: клопы, тараканы, муравьи и
+              другие. На страницах — как работаем, как подготовить помещение и
+              ответы на типичные вопросы.
             </p>
 
             <div className={styles.linksGrid}>
@@ -109,10 +111,10 @@ export default function HomePage() {
             <div className={styles.split}>
               <div className={styles.box}>
                 <p className={styles.muted} style={{ marginBottom: 10 }}>
-                  В Москве работаем по всем округам — выезд в день обращения,
-                  отдельные посадочные под услуги. Для Московской области
-                  собрали страницы по городам, чтобы покрывать запросы «в
-                  [город]».
+                  В Москве работаем по всем округам — выезд в день обращения, у
+                  каждой услуги свой раздел на сайте. По городам Московской
+                  области тоже есть отдельные страницы — можно сразу открыть
+                  информацию для вашего населённого пункта.
                 </p>
                 <div className={styles.actions} style={{ marginTop: 0 }}>
                   <Link

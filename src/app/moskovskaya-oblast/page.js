@@ -7,7 +7,7 @@ import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 export const metadata = {
   title: "Московская область — города",
   description:
-    "Города Московской области: отдельные SEO-страницы по услугам и выезду.",
+    "Выезд по Московской области: города и услуги — дезинсекция, дезинфекция, дератизация. Удобные страницы по каждому направлению.",
   alternates: { canonical: "https://dezpro.online/moskovskaya-oblast/" },
 };
 
@@ -23,8 +23,9 @@ export default function MoskovskayaOblastPage() {
         />
         <h1 className={styles.title}>Московская область</h1>
         <p className={styles.text}>
-          По каждому городу МО формируем отдельные посадочные под услуги. Это
-          помогает покрывать запросы «дезинсекция в [город]» и т.п.
+          Для городов Московской области у нас есть отдельные страницы по
+          услугам — так проще узнать условия выезда и ориентиры по работам в
+          вашем населённом пункте.
         </p>
 
         <h2 className={styles.subtitle}>Города</h2>

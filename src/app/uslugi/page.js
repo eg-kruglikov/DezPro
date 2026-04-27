@@ -22,10 +22,10 @@ export default function UslugiIndexPage() {
         />
         <h1 className={styles.title}>Услуги</h1>
         <p className={styles.text}>
-          Это основной каталог. Дальше каждая услуга разветвляется на страницы
-          «по вредителю» (например,{" "}
-          <Link href="/uslugi/dezinsekciya/ot-klopov/">от клопов</Link>) и «по
-          городу МО» (например,{" "}
+          Здесь собраны основные направления. У каждой услуги есть страницы по
+          конкретной задаче (например,{" "}
+          <Link href="/uslugi/dezinsekciya/ot-klopov/">от клопов</Link>) и по
+          городу в области (например,{" "}
           <Link href="/uslugi/dezinsekciya/balashikha/">в Балашихе</Link>).
         </p>
 
