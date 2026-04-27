@@ -1,48 +1,53 @@
 .nav {
-  margin: 0 0 14px;
+  margin: 0 0 18px;
 }
 
 .list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   list-style: none;
   padding: 0;
   margin: 0;
-  color: color-mix(in srgb, var(--foreground) 72%, transparent);
-  font-size: 14px;
+  color: var(--text-muted);
+  font-size: 13.5px;
 }
 
 .item {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .sep {
-  color: color-mix(in srgb, var(--foreground) 40%, transparent);
+  color: var(--text-faint);
+  font-size: 14px;
+  line-height: 1;
 }
 
 .link {
-  color: var(--foreground);
+  color: var(--text-strong);
   text-decoration: none;
-  font-weight: 800;
-  padding: 6px 10px;
+  font-weight: 700;
+  padding: 6px 12px;
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
-  background: transparent;
+  border: 1px solid var(--border);
+  background: var(--background);
+  transition: background var(--t-fast), border-color var(--t-fast),
+    color var(--t-fast);
 }
 
 .link:hover {
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--background));
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  color: var(--foreground);
 }
 
 .current {
   font-weight: 800;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accent) 16%, var(--background));
   color: var(--foreground);
 }
-

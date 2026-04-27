@@ -1,83 +1,221 @@
 .wrap {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 40px 20px 60px;
+  padding: 44px 20px 80px;
 }
 
+/* ───────── TITLES ───────── */
 .title {
-  font-size: 2rem;
+  font-size: clamp(26px, 4vw, 40px);
   margin: 0 0 1rem;
-  line-height: 1.25;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  position: relative;
+  padding-bottom: 14px;
 }
 
+.title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 56px;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 35%, transparent));
+}
+
+/* ───────── TEXT ───────── */
 .text {
-  font-size: 1.05rem;
-  line-height: 1.85;
+  font-size: 16px;
+  line-height: 1.75;
   margin: 0 0 1rem;
+  color: var(--text-strong);
+  max-width: 820px;
 }
 
 .text a {
-  color: var(--link);
-  text-decoration: none;
-  font-weight: 600;
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--accent) 80%, transparent);
+  text-decoration-thickness: 2px;
+  font-weight: 700;
+  transition: color var(--t-fast), text-decoration-color var(--t-fast);
 }
 
 .text a:hover {
-  text-decoration: underline;
+  color: var(--accent-strong);
+  text-decoration-color: var(--accent);
 }
 
+/* ───────── SUBTITLE ───────── */
 .subtitle {
-  font-size: 1.35rem;
-  margin: 1.75rem 0 0.75rem;
-  font-weight: 700;
+  position: relative;
+  font-size: clamp(20px, 2.4vw, 26px);
+  margin: 2.25rem 0 1rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  padding-left: 16px;
 }
 
+.subtitle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 35%, transparent));
+}
+
+/* ───────── LISTS ───────── */
 .list {
-  margin: 0 0 1rem;
-  padding-left: 1.25rem;
-  line-height: 1.85;
+  margin: 0 0 1.25rem;
+  padding-left: 0;
+  line-height: 1.75;
+  list-style: none;
+  display: grid;
+  gap: 8px;
 }
 
+.list li {
+  position: relative;
+  padding: 4px 0 4px 28px;
+  font-size: 15.5px;
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 13px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.list li a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent);
+  text-decoration-thickness: 1.5px;
+  font-weight: 600;
+  transition: color var(--t-fast);
+}
+
+.list li a:hover {
+  color: var(--accent-strong);
+}
+
+/* ───────── GRID & CARDS ───────── */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 14px;
+  gap: 16px;
+  margin-top: 18px;
 }
 
 .card {
-  border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
-  border-radius: 12px;
-  padding: 14px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px 20px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   background: var(--background);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  transition: transform var(--t-base), box-shadow var(--t-base),
+    border-color var(--t-base);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 35%, transparent) 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-slow);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.card:hover::before {
+  transform: scaleX(1);
 }
 
 .cardTitle {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
+  font-weight: 800;
   margin: 0 0 6px;
+  letter-spacing: -0.005em;
+}
+
+.cardTitle a {
+  color: var(--foreground);
+  transition: color var(--t-fast);
+}
+
+.cardTitle a:hover {
+  color: var(--accent-strong);
 }
 
 .cardText {
-  margin: 0 0 10px;
-  color: color-mix(in srgb, var(--foreground) 75%, transparent);
+  margin: 0 0 12px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  font-size: 15px;
+  flex: 1;
 }
 
+/* ───────── BUTTONS ───────── */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: var(--button-bg);
+  padding: 11px 18px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #ffe25a 0%, var(--accent) 100%);
   color: var(--button-fg);
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 14.5px;
   text-decoration: none;
+  border: 1px solid color-mix(in srgb, var(--foreground) 14%, transparent);
+  box-shadow: var(--shadow-accent), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  align-self: flex-start;
+  transition: transform var(--t-fast), box-shadow var(--t-base);
 }
 
 .btn:hover {
-  filter: brightness(0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
+.btn:active {
+  transform: translateY(0);
+}
+
+/* ───────── RESPONSIVE ───────── */
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
@@ -86,13 +224,15 @@
 
 @media (max-width: 600px) {
   .wrap {
-    padding: 24px 16px 40px;
+    padding: 28px 16px 56px;
   }
   .title {
-    font-size: 1.55rem;
+    font-size: 1.7rem;
   }
   .grid {
     grid-template-columns: 1fr;
   }
+  .subtitle {
+    margin-top: 1.75rem;
+  }
 }
-

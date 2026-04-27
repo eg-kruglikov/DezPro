@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Anton } from "next/font/google";
+import { Anton, Manrope } from "next/font/google";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import YandexMetrika from "./components/YandexMetrika";
@@ -12,6 +12,13 @@ const anton = Anton({
   subsets: ["latin", "latin-ext"],
   display: "swap",
   variable: "--font-anton",
+});
+
+const manrope = Manrope({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin", "latin-ext", "cyrillic"],
+  display: "swap",
+  variable: "--font-manrope",
 });
 
 const SITE_URL = "https://dezpro.online";
@@ -119,7 +126,11 @@ const websiteJsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ru" className={anton.variable}>
+    <html
+      lang="ru"
+      className={`${anton.variable} ${manrope.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <head>
         <meta name="yandex-verification" content="0d0d70e2020418fa" />
         <link rel="icon" type="image/png" sizes="any" href="/icon.png" />

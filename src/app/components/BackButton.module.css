@@ -1,35 +1,50 @@
 .backButton {
-  display: inline-block;
-  padding: 10px 24px;
-  background: #fff;
-  border: 2px solid #000;
-  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: var(--background);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.95rem;
-  color: #000;
+  color: var(--foreground);
   text-decoration: none;
-  transition: all 0.2s ease;
   text-align: center;
+  box-shadow: var(--shadow-xs);
+  transition: background var(--t-fast), border-color var(--t-fast),
+    transform var(--t-fast), box-shadow var(--t-base);
+}
+
+.backButton::before {
+  content: "←";
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: transform var(--t-fast);
 }
 
 .backButton:hover {
-  background: #f2cb05;
-  border-color: #f2cb05;
+  background: color-mix(in srgb, var(--accent) 14%, var(--background));
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--border-strong));
   transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Адаптивность */
+.backButton:hover::before {
+  transform: translateX(-2px);
+}
+
 @media (max-width: 768px) {
   .backButton {
-    padding: 10px 20px;
+    padding: 10px 16px;
     font-size: 0.9rem;
   }
 }
 
 @media (min-width: 1024px) {
   .backButton {
-    padding: 12px 28px;
+    padding: 12px 22px;
     font-size: 1rem;
   }
 }
