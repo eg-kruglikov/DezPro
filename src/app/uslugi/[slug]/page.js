@@ -5,6 +5,7 @@ import services from "../../data/services";
 import pestsByService from "../../data/pests";
 import { getServiceExtras } from "../../data/serviceExtras";
 import { serviceHubCopy } from "../../data/serviceLandingCopy";
+import { SERVICE_HUB_INFO_LINKS } from "../../data/serviceInfoLinks";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import FAQ from "../../components/FAQ/FAQ";
 import StructuredData from "../../components/StructuredData";
@@ -138,14 +139,29 @@ export default async function UslugaPage({ params }) {
           </>
         )}
 
+        {SERVICE_HUB_INFO_LINKS[slug]?.length > 0 && (
+          <>
+            <h2 className={styles.subtitle}>Полезные материалы</h2>
+            <ul className={styles.list}>
+              {SERVICE_HUB_INFO_LINKS[slug].map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
         <h2 className={styles.subtitle}>География и цены</h2>
         <p className={styles.text}>
           Отдельные страницы по городам Московской области — в разделе{" "}
           <Link href="/moskovskaya-oblast/">Московская область</Link>. Ориентиры
           по стоимости — на странице{" "}
           <Link href="/tseny/">цены</Link>, заявка — через{" "}
-          <Link href="/contacts/">контакты</Link>. Полезные материалы — в{" "}
-          <Link href="/spravochnik/">справочнике</Link> и разделе{" "}
+          <Link href="/contacts/">контакты</Link>. Статьи по признакам вредителей
+          и подготовке к обработке — в разделе{" "}
+          <Link href="/info/">информация</Link>; практика самостоятельной
+          обработки — в <Link href="/spravochnik/">справочнике</Link> и разделе{" "}
           <Link href="/diy/dezinsekciya/">сделать самому</Link> (обзорно, без
           замены профессиональной обработки).
         </p>

@@ -10,6 +10,7 @@ const NAV = [
   { href: "/uslugi/", label: "Услуги" },
   { href: "/uslugi/dezinsekciya/moskva/", label: "Москва", highlight: true },
   { href: "/moskovskaya-oblast/", label: "МО" },
+  { href: "/info/", label: "Информация" },
   { href: "/tseny/", label: "Цены" },
   { href: "/contacts/", label: "Контакты" },
 ];

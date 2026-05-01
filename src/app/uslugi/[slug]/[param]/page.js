@@ -30,23 +30,11 @@ const SERVICE_PRICE_HINTS = {
   "prochie-uslugi": { lowPrice: 2500, highPrice: 8000 },
 };
 
-/**
- * Ссылки на статьи /info/ по каждому слагу вредителя — для перекрёстных ссылок
- * со страниц «от …».
- */
-const PEST_INFO_LINKS = {
-  "ot-klopov": [
-    { label: "Укусы клопов на коже: как выглядят и что делать", href: "/info/ukusy-klopov-na-kozhe/" },
-    { label: "Как выглядят постельные клопы", href: "/info/kak-vyglyadyat-klopy/" },
-    { label: "Признаки клопов в квартире", href: "/info/priznaki-klopov-v-kvartire/" },
-    { label: "Сколько живут клопы", href: "/info/skolko-zhivut-klopy/" },
-    { label: "При какой температуре погибают клопы", href: "/info/pri-kakoj-temperature-pogibajut-klopy/" },
-  ],
-  "ot-tarakanov": [
-    { label: "Как избавиться от тараканов в квартире", href: "/info/kak-izbavitsya-ot-tarakanov-v-kvartire/" },
-    { label: "Эффективные средства от тараканов", href: "/info/sredstva-ot-tarakanov/" },
-  ],
-};
+import {
+  SERVICE_HUB_INFO_LINKS,
+  PEST_INFO_LINKS,
+  EXTRA_METHOD_INFO_LINKS,
+} from "../../../data/serviceInfoLinks";
 
 function getCity(param) {
   return cities.find((c) => c.slug === param) || null;
@@ -247,6 +235,18 @@ export default async function UslugaParamPage({ params }) {
                 : `${service.name} в ${city.name} (Московская область)`}
             </h1>
             <LandingBody bundle={getCityLandingBundle(service, city)} />
+            {SERVICE_HUB_INFO_LINKS[slug]?.length > 0 && (
+              <>
+                <h2 className={styles.subtitle}>Полезные материалы</h2>
+                <ul className={styles.list}>
+                  {SERVICE_HUB_INFO_LINKS[slug].map((item) => (
+                    <li key={item.href}>
+                      <Link href={item.href}>{item.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
             <h2 className={styles.subtitle}>Рядом по услуге</h2>
             <p className={styles.text}>
               Общая страница услуги:{" "}
@@ -325,6 +325,18 @@ export default async function UslugaParamPage({ params }) {
                 }
               }
             />
+            {EXTRA_METHOD_INFO_LINKS[extra.slug]?.length > 0 && (
+              <>
+                <h2 className={styles.subtitle}>Полезные материалы</h2>
+                <ul className={styles.list}>
+                  {EXTRA_METHOD_INFO_LINKS[extra.slug].map((item) => (
+                    <li key={item.href}>
+                      <Link href={item.href}>{item.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
             <RelatedPestsFixed service={service} currentSlug={extra.slug} />
           </>
         )}
@@ -342,6 +354,9 @@ export default async function UslugaParamPage({ params }) {
           </li>
           <li>
             <Link href="/spravochnik/">Справочник по вредителям</Link>
+          </li>
+          <li>
+            <Link href="/info/">Статьи о вредителях и обработке</Link>
           </li>
         </ul>
       </div>

@@ -1,25 +1,13 @@
+import "@fontsource-variable/manrope/index.css";
+import "@fontsource/anton/latin-400.css";
+import "@fontsource/anton/latin-ext-400.css";
 import "./globals.css";
-import { Anton, Manrope } from "next/font/google";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import YandexMetrika from "./components/YandexMetrika";
 import StructuredData from "./components/StructuredData";
 import company from "./data/company";
 import { localBusinessJsonLd } from "./lib/jsonld";
-
-const anton = Anton({
-  weight: "400",
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-  variable: "--font-anton",
-});
-
-const manrope = Manrope({
-  weight: ["400", "500", "600", "700", "800"],
-  subsets: ["latin", "latin-ext", "cyrillic"],
-  display: "swap",
-  variable: "--font-manrope",
-});
 
 const SITE_URL = "https://dezpro.online";
 const DEFAULT_TITLE =
@@ -126,11 +114,7 @@ const websiteJsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="ru"
-      className={`${anton.variable} ${manrope.variable}`}
-      data-scroll-behavior="smooth"
-    >
+    <html lang="ru" data-scroll-behavior="smooth">
       <head>
         <meta name="yandex-verification" content="0d0d70e2020418fa" />
         <link rel="icon" type="image/png" sizes="any" href="/icon.png" />
